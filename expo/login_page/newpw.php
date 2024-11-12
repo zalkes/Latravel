@@ -73,6 +73,6 @@
             </div>
         </div>
     </div>  
-    <img src="../assets/images/Logo.png" class="logo">
+    <img src="../assets/images/logo2.png" class="logo">
 </body>
 </html>
