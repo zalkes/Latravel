@@ -173,7 +173,7 @@
                 </div>
             </div>
         </div>
-        <img src="../assets/images/logo.png" class="logo">
+        <img src="../assets/images/Logo.png" class="logo">
     </body>
     <script src="../elements/scripts/login.js"></script>
 </html>
