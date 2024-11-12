@@ -323,10 +323,9 @@ td.status.approved {
     padding: 5px 10px;
     cursor: pointer;
     font-weight: bold;
-    background-color: white;
-    color: #2bace4;
+    background-color: #2bace4;
+    color: white;
     border-radius: 5px;
-    border: 1px solid #2bace4;
 }
 
 .pagination .pagination button {
@@ -334,10 +333,11 @@ td.status.approved {
     padding: 5px 10px;
     cursor: pointer;
     font-weight: bold;
-    background-color: #2bace4;
-    color: white;
+    background-color: white;
+    color: #2bace4;
     border-radius: 5px;
     border: 0;
+    border: 1px solid #2bace4;
 }
 
 /* ---------------------------- DASHBOARD ---------------------------- */
