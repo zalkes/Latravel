@@ -1,0 +1,626 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --hitam: #000000;
+    --putih: #ffffff;
+    --merah: #ff3131;
+    --hijau: #7ed957;
+    --kuning: #ffdf2b;
+    --pri-col: #00274d;
+    --sec-col: #2bace4;
+    --ter-col: #0f456d;
+}
+
+* {
+    font-family: "Libre Franklin", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f2f2f2;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 230px;
+    height: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    position: fixed;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 100px;
+    height: auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li:nth-child(1) {
+    border-top: 1px solid #e0e0e0;
+}
+
+ul li {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    padding: 15px 20px;
+    font-size: 16px;
+    transition: font-weight 0.3s;
+}
+
+ul li a:hover {
+    font-weight: bold;
+}
+
+.sidebar-menu {
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 1px;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    opacity: 60%;
+}
+
+.sidebar-menu .active a {
+    opacity: 100%;
+    font-weight: bold;
+}
+
+.sidebar-menu li a img {
+    margin-right: 25px;
+}
+
+.sidebar-menu li a:hover {
+    color: black;
+    opacity: 100%;
+}
+
+.copyright {
+    text-align: center;
+    color: black;
+    font-size: 12px;
+    position: absolute;
+    bottom: 45px;
+    width: 100%;
+}
+
+.sidebar-toggle {
+    display: none;
+    font-size: 24px;
+    color: #4a90e2;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.logo h2 {
+    font-size: 1.5em;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.main-content {
+    padding: 0 20px 20px;
+    margin-left: 230px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;    
+}
+
+header h3 {
+    font-size: 26px;
+    margin: 30px 0 10px;
+}
+
+.admin {
+    font-weight: bold;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+.profile-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 20px;
+    border: 1px solid black;
+}
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#search {
+    padding: 8px 10px 8px 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 500px;
+    font-size: 18px;
+}
+
+#searchButton {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: -35px;
+}
+
+.search-icon {
+    background-image: url('search-icon.png');
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.add-button {
+    background-color: #7ed957;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.add-button:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.add-button:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+    font-size: 18px;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+table th {
+    background-color: #00BFFF;
+    color: black;   
+}
+
+table th:nth-child(1), table td:nth-child(1), 
+table th:nth-child(2), table td:nth-child(2) {
+    width: 100px;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+table img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.gambar {
+    width: 100px;
+    height: 100px;
+    border-radius: 0;
+}
+
+.approve-btn, .reject-btn, .delete-btn, .edit-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.approve-btn i {
+    color: #7ed957;
+}
+.reject-btn i {
+    color: #ff3131;
+}
+
+.delete-btn img {
+    width: 30px;
+    height: 30px;
+    border-radius: 0;
+}
+
+.edit-btn img {
+    width: 30px;
+    height: 30px;
+    border-radius: 0;
+}
+
+.action-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.pagination span {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.pagination .page-number.active {
+    font-weight: bold;
+    background-color: #00BFFF;
+    color: white;
+    border-radius: 5px;
+}
+
+/* ---------------------------- DASHBOARD ---------------------------- */
+.welcome {
+    margin-top: 15px;
+}
+
+.welcome h3 {
+    font-weight: normal;
+}
+
+.welcome span {
+    font-weight: bold;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 50px 100px; 
+    gap: 32px;
+}
+
+.card-satu {
+    background-color: #ffffff;
+    flex: 1 0 400px;
+    height: 235px;
+    border-radius: 20px;
+    max-width: 350px;
+}
+
+.card-dua {
+    background-color: #ffffff;
+    flex: 1 0 400px;
+    height: 235px;
+    border-radius: 20px;
+    max-width: 735px;
+}
+
+.detail-pengguna {
+    background-color: #ffdf2b;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 45px 35px 45px 22px;
+    text-align: center;
+    align-items: center;
+    font-size: 20px;
+    height: 200px;
+}
+
+.detail-destinasi {
+    background-color: #67d1ff;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 45px 35px 45px 22px;
+    text-align: center;
+    align-items: center;
+    font-size: 20px;
+    height: 200px;
+}
+
+.detail-detail {
+    background-color: #a4f283;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 45px 30px 45px 22px;
+    height: 200px;
+    align-items: center;
+}
+
+.detail-detail-kiri {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-size: 18px;
+    max-width: 350px;
+    border-right: 1px solid black;
+}
+
+.detail-detail-kanan {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-size: 18px;
+    max-width: 350px;
+    border-left: 1px solid black;
+}
+
+.lihat-detail {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 6px;
+    padding-left: 10px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.vertical-line {
+    border-left: 1px solid black;
+    height: 50px;
+    margin-left: 10px;
+}
+
+
+/* ---------------------------- CRUD ADMIN ---------------------------- */
+.content-container {
+    display: flex;
+    gap: 30px;
+    background-color: #ffffff;
+    padding: 45px;
+    margin-top: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: flex-start;
+    border-radius: 25px;
+}
+
+.form-section {
+    flex: 1;
+    width: 100%;
+    padding: 40px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-section::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    right: 0;
+    width: 1px;
+    margin-right: -15px;
+    margin-top: -18px;
+    margin-bottom: -18px;
+    background-color: #ccc;
+}
+
+.form-group {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.form-group:nth-child(1) {
+    margin-top: 0;
+}
+
+.form-group label {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+    width: 100px;
+}
+
+form input[type="text"],
+form textarea {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+}
+
+form textarea {
+    height: 200px; 
+    width: 100%; 
+    resize: none;
+}
+
+.form-group textarea:nth-child(3) {
+    height: 150px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-left: 110px;
+}
+
+.kirim-btn {
+    background-color: #34db5b;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 10px;
+    width: 80px;
+    height: auto;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.kembali-btn {
+    background-color: #fecb32;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 10px;
+    width: 80px;
+    height: auto;
+    border-radius: 10px;
+    border: none;   
+    cursor: pointer;
+}
+
+.upload-section {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.upload-placeholder {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background-color: #ffffff;
+    border: 2px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.upload-icon {
+    width: 70%;
+    height: 70%;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.upload-btn {
+    background-color: #34db5b;
+    color: white;
+    font-weight: bold;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 25px;
+    width: 100%;
+    max-width: 180px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.gambar-update{
+    width: 100%;
+    height: 100%;
+}
+
+.gambar-preview {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------------------------- CRUD 2 ADMIN ---------------------------- */
+.form-group-2 {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.form-group-2:nth-child(1) {
+    margin-top: 0;
+}
+
+.form-group-2 label {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+    width: 100px;
+}
+
+.form-group-2 textarea {
+    height: 135px;
+}
