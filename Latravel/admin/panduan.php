@@ -40,38 +40,41 @@
             <button id="searchButton"><img src="../assets/icon/cari.png" alt="Icon" width="16" height="16"></i></button>
         </div>
         <button class="add-button" onclick="window.location.href='tambahPanduan.php';">Tambah Panduan</button>
-        <table>
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Gambar</th>
-                    <th>Judul</th>
-                    <th>Deskripsi</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1; foreach($panduan as $pand) : ?>
-                <?php $direktori = "../database/foto_panduan/" . $pand["foto"];?>
-                <tr>
-                    <td><?= $i ?></td>
-                    <td><?php if ($pand["foto"] == "") {echo "Foto belum ada";} else {echo "<img src='$direktori' alt='Foto panduan' class='gambar'>";} ?></td>
-                    <td><?php echo $pand["judul"];?></td>
-                    <td><?php echo $pand["deskripsi"];?></td>
-                    <td>
-                        <div class='action-btn'>
-                            <a href='ubahPanduan.php?id_panduan=<?= $pand['id'] ?>' class='edit-btn'><img src='../assets/icon/ubah.png'></a>
-                            <a href='../database/delete.php?id_panduan=<?= $pand['id'] ?>' class='delete-btn' onclick="return confirm('Yakin ingin menghapus panduan ini?');"><img src='../assets/icon/sampah.png'></a>
-                        </div>
-                    </td>
-                </tr>
-                <?php $i++; endforeach; ?>
-            </tbody>
-        </table>
+        <div id="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Gambar</th>
+                        <th>Judul</th>
+                        <th>Deskripsi</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; foreach($panduan as $pand) : ?>
+                    <?php $direktori = "../database/foto_panduan/" . $pand["foto"];?>
+                    <tr>
+                        <td><?= $i ?></td>
+                        <td><?php if ($pand["foto"] == "") {echo "Foto belum ada";} else {echo "<img src='$direktori' alt='Foto panduan' class='gambar'>";} ?></td>
+                        <td><?php echo $pand["judul"];?></td>
+                        <td><?php echo $pand["deskripsi"];?></td>
+                        <td>
+                            <div class='action-btn'>
+                                <a href='ubahPanduan.php?id_panduan=<?= $pand['id'] ?>' class='edit-btn'><img src='../assets/icon/ubah.png'></a>
+                                <a href='../database/delete.php?id_panduan=<?= $pand['id'] ?>' class='delete-btn' onclick="return confirm('Yakin ingin menghapus panduan ini?');"><img src='../assets/icon/sampah.png'></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php $i++; endforeach; ?>
+                </tbody>
+            </table>
+        </div>
         <div class="pagination">
             <div class="pagination" id="pagination"></div>
         </div>
     </section>
 </body>
 <script src="../elements/scripts/script.js"></script>
+<script src="../livesearch/livesearch.js"></script>
 </html>

@@ -42,40 +42,43 @@
             <button id="searchButton"><img src="../assets/icon/cari.png" alt="Icon" width="16" height="16"></i></button>
         </div>
         <button class="add-button" onclick="window.location.href='tambahDestinasi.php';">Tambah Destinasi</button>
-        <table>
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Gambar</th>
-                    <th>Judul</th>
-                    <th>Subjudul</th>
-                    <th>Deskripsi</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1; foreach($destinasi as $dest) : ?>
-                <?php $direktori = "../database/foto_destinasi/" . $dest["foto"];?>
-                <tr>
-                    <td><?= $i ?></td>
-                    <td><?php if ($dest["foto"] == "") {echo "Foto belum ada";} else {echo "<img src='$direktori' alt='Foto destinasi' class='gambar'>";} ?></td>
-                    <td><?php echo $dest["judul"];?></td>
-                    <td><?php echo $dest["subjudul"];?></td>
-                    <td><?php echo $dest["deskripsi"];?></td>
-                    <td>
-                        <div class='action-btn'>
-                            <a href='ubahDestinasi.php?id_destinasi=<?= $dest['id'] ?>' class='edit-btn'><img src='../assets/icon/ubah.png'></a>
-                            <a href='../database/delete.php?id_destinasi=<?= $dest['id'] ?>' class='delete-btn' onclick="return confirm('Yakin ingin menghapus destinasi ini?');"><img src='../assets/icon/sampah.png'></a>
-                        </div>
-                    </td>
-                </tr>
-                <?php $i++; endforeach; ?>
-            </tbody>
-        </table>
+        <div id="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Gambar</th>
+                        <th>Judul</th>
+                        <th>Subjudul</th>
+                        <th>Deskripsi</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; foreach($destinasi as $dest) : ?>
+                    <?php $direktori = "../database/foto_destinasi/" . $dest["foto"];?>
+                    <tr>
+                        <td><?= $i ?></td>
+                        <td><?php if ($dest["foto"] == "") {echo "Foto belum ada";} else {echo "<img src='$direktori' alt='Foto destinasi' class='gambar'>";} ?></td>
+                        <td><?php echo $dest["judul"];?></td>
+                        <td><?php echo $dest["subjudul"];?></td>
+                        <td><?php echo $dest["deskripsi"];?></td>
+                        <td>
+                            <div class='action-btn'>
+                                <a href='ubahDestinasi.php?id_destinasi=<?= $dest['id'] ?>' class='edit-btn'><img src='../assets/icon/ubah.png'></a>
+                                <a href='../database/delete.php?id_destinasi=<?= $dest['id'] ?>' class='delete-btn' onclick="return confirm('Yakin ingin menghapus destinasi ini?');"><img src='../assets/icon/sampah.png'></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php $i++; endforeach; ?>
+                </tbody>
+            </table>
+        </div>
         <div class="pagination">
             <div class="pagination" id="pagination"></div>
         </div>
     </section>
 </body>
 <script src="../elements/scripts/script.js"></script>
+<script src="../livesearch/livesearch.js"></script>
 </html>

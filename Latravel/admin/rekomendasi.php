@@ -38,49 +38,52 @@
             <input type="text" placeholder="Pencarian..." id="search">
             <button id="searchButton"><img src="../assets/icon/cari.png" alt="Icon" width="16" height="16"></i></button>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Gambar</th>
-                    <th>Judul</th>
-                    <th>Deskripsi</th>
-                    <th>Username</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1; foreach($rekomendasi as $rekom) : ?>
-                <?php $direktori = "../database/foto_rekomendasi/" . $rekom["foto"];?>
-                <tr>
-                    <td><?= $i ?></td>
-                    <td><?php if ($rekom["foto"] == "") {echo "Foto belum ada";} else {echo "<img src='$direktori' alt='Foto rekomendasi' class='gambar'>";} ?></td>
-                    <td><?php echo $rekom["judul"];?></td>
-                    <td><?php echo $rekom["deskripsi"];?></td>
-                    <td><?php echo $rekom["fk_username"];?></td>
-                    <td class='status <?php if ($rekom["stat"] == "Belum Disetujui") {echo "rejected";} else {echo "approved";} ?>'><?php echo $rekom["stat"];?></td>
-                    <td>
-                        <?php if ($rekom["stat"] == "Disetujui") { ?>
-                            <div class='action-btn'>
-                                <a href='ubahRekomendasi.php?id_rekomendasi=<?= $rekom['id'] ?>' class='edit-btn' title='Ubah'><img src='../assets/icon/ubah.png'></a>
-                                <a href='../database/delete.php?id_rekomendasi=<?= $rekom['id'] ?>' class='delete-btn' title='Hapus' onclick="return confirm('Yakin ingin menghapus rekomendasi ini?');"><img src='../assets/icon/sampah.png'></a>
-                            </div>
-                        <?php } else { ?>
-                            <div class='action-btn'>
-                                <a href='../database/terima.php?id_rekomendasi=<?= $rekom['id'] ?>' class='approve-btn' title='Setuju'><i class='fa-solid fa-circle-check fa-xl'></i></a>
-                                <a href='../database/delete.php?id_rekomendasi=<?= $rekom['id'] ?>' class='reject-btn' title='Tolak' onclick="return confirm('Yakin ingin menolak rekomendasi ini?');"><i class='fa-solid fa-circle-xmark fa-xl'></i></a>
-                            </div>
-                        <?php } ?>
-                    </td>
-                </tr>
-                <?php $i++; endforeach; ?>
-            </tbody>
-        </table>
+        <div id="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Gambar</th>
+                        <th>Judul</th>
+                        <th>Deskripsi</th>
+                        <th>Username</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; foreach($rekomendasi as $rekom) : ?>
+                    <?php $direktori = "../database/foto_rekomendasi/" . $rekom["foto"];?>
+                    <tr>
+                        <td><?= $i ?></td>
+                        <td><?php if ($rekom["foto"] == "") {echo "Foto belum ada";} else {echo "<img src='$direktori' alt='Foto rekomendasi' class='gambar'>";} ?></td>
+                        <td><?php echo $rekom["judul"];?></td>
+                        <td><?php echo $rekom["deskripsi"];?></td>
+                        <td><?php echo $rekom["fk_username"];?></td>
+                        <td class='status <?php if ($rekom["stat"] == "Belum Disetujui") {echo "rejected";} else {echo "approved";} ?>'><?php echo $rekom["stat"];?></td>
+                        <td>
+                            <?php if ($rekom["stat"] == "Disetujui") { ?>
+                                <div class='action-btn'>
+                                    <a href='ubahRekomendasi.php?id_rekomendasi=<?= $rekom['id'] ?>' class='edit-btn' title='Ubah'><img src='../assets/icon/ubah.png'></a>
+                                    <a href='../database/delete.php?id_rekomendasi=<?= $rekom['id'] ?>' class='delete-btn' title='Hapus' onclick="return confirm('Yakin ingin menghapus rekomendasi ini?');"><img src='../assets/icon/sampah.png'></a>
+                                </div>
+                            <?php } else { ?>
+                                <div class='action-btn'>
+                                    <a href='../database/terima.php?id_rekomendasi=<?= $rekom['id'] ?>' class='approve-btn' title='Setuju'><i class='fa-solid fa-circle-check fa-xl'></i></a>
+                                    <a href='../database/delete.php?id_rekomendasi=<?= $rekom['id'] ?>' class='reject-btn' title='Tolak' onclick="return confirm('Yakin ingin menolak rekomendasi ini?');"><i class='fa-solid fa-circle-xmark fa-xl'></i></a>
+                                </div>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <?php $i++; endforeach; ?>
+                </tbody>
+            </table>
+        </div>
         <div class="pagination">
             <div class="pagination" id="pagination"></div>
         </div>
     </section>
 </body>
 <script src="../elements/scripts/script.js"></script>
+<script src="../livesearch/livesearch.js"></script>
 </html>

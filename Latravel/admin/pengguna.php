@@ -36,36 +36,41 @@
             </div>
         </header>
         <div class="search-container">
-            <input type="text" placeholder="Pencarian..." id="search">
-            <button id="searchButton"><img src="../assets/icon/cari.png" alt="Icon" width="16" height="16"></i></button>
+            <form action="" method="get">
+                <input type="text" placeholder="Pencarian..." id="search">
+                <button id="searchButton"><img src="../assets/icon/cari.png" alt="Icon" width="16" height="16"></i></button>
+            </form>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Foto</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1; foreach($pengguna as $user) : ?>
-                <?php $direktori = "../database/profil_pengguna/" . $user["foto"];?>
-                <tr>
-                    <td><?= $i ?></td>
-                    <td><?php if ($user["foto"] == "") {echo "Foto belum ada";} else {echo "<img src='$direktori' alt='Foto pengguna' width='80px' heigth='80px'>";} ?></td>
-                    <td><?php echo $user["username"];?></td>
-                    <td><?php echo $user["email"];?></td>
-                    <td><a href="../database/delete.php?username=<?= $user['username'] ?>" onclick="return confirm('Yakin ingin menghapus akun pengguna ini?');" class='delete-btn'><img src='../assets/icon/sampah.png'></a></td>
-                </tr>
-                <?php $i++; endforeach; ?>
-            </tbody>
-        </table>
+        <div id="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Foto</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; foreach($pengguna as $user) : ?>
+                    <?php $direktori = "../database/profil_pengguna/" . $user["foto"];?>
+                    <tr>
+                        <td><?= $i ?></td>
+                        <td><?php if ($user["foto"] == "") {echo "Foto belum ada";} else {echo "<img src='$direktori' alt='Foto pengguna' width='80px' heigth='80px'>";} ?></td>
+                        <td><?php echo $user["username"];?></td>
+                        <td><?php echo $user["email"];?></td>
+                        <td><a href="../database/delete.php?username=<?= $user['username'] ?>" onclick="return confirm('Yakin ingin menghapus akun pengguna ini?');" class='delete-btn'><img src='../assets/icon/sampah.png'></a></td>
+                    </tr>
+                    <?php $i++; endforeach; ?>
+                </tbody>
+            </table>
+        </div>
         <div class="pagination">
             <div class="pagination" id="pagination"></div>
         </div>
     </section>
 </body>
 <script src="../elements/scripts/script.js"></script>
+<script src="../livesearch/livesearch.js"></script>
 </html>
