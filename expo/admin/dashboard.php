@@ -27,7 +27,7 @@
                         <h1>15<br>Pengguna</h1>
                     </div>
 
-                    <div class="lihat-detail">
+                    <div class="lihat-detail" onclick="location.href='pengguna.php'">
                         <img src="../assets/icon/pengaturan.png" width="22px" height="22px" alt="">
                         <p>Lihat detail</p>
                     </div>
@@ -39,7 +39,7 @@
                         <h1>6<br>Destinasi</h1>
                     </div>
                     
-                    <div class="lihat-detail">
+                    <div class="lihat-detail" onclick="location.href='destinasi.php'"    >
                         <img src="../assets/icon/pengaturan.png" width="22px" height="22px" alt="">
                         <p>Lihat detail</p>
                     </div>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     
-                    <div class="lihat-detail">
+                    <div class="lihat-detail" onclick="location.href='rekomendasi.php'">
                         <img src="../assets/icon/pengaturan.png" width="22px" height="22px" alt="">
                         <p>Lihat detail</p>
                     </div>

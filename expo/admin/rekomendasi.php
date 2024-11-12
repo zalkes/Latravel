@@ -49,8 +49,8 @@
                             <td>";
                     if ($status == "Disetujui") {
                         echo "<div class='action-btn'>
-                                <a href='hapus.php?id=$i' class='edit-btn' title='Ubah'><img src='../assets/icon/ubah.png'></a>
-                                <a href='ubah.php?id=$i' class='delete-btn' title='Hapus'><img src='../assets/icon/sampah.png'></a>
+                                <a href='ubah.php?id=$i' class='edit-btn' title='Ubah'><img src='../assets/icon/ubah.png'></a>
+                                <a href='hapus.php?id=$i' class='delete-btn' title='Hapus'><img src='../assets/icon/sampah.png'></a>
                             </div>";
                     } else {
                         echo "<div class='action-btn'>

@@ -29,7 +29,7 @@
                     </div>
                     <div class="buttons">
                         <button type="submit" class="kirim-btn">Kirim</button>
-                        <button type="button" onclick="window.history.back()" class="kembali-btn">Kembali</button>
+                        <button type="button" class="kembali-btn" onclick="window.history.back()">Kembali</button>
                     </div>
                 </form>
             </div>
