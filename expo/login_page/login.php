@@ -12,7 +12,7 @@
             echo "
                 <script>
                     alert('Login Berhasil, Selamat Datang Admin');
-                    document.location.href = '../crudAdmin/dashboard.php';
+                    document.location.href = '../admin/dashboard.php';
                 </script>
             ";
             exit;
@@ -27,7 +27,7 @@
                 echo "
                     <script>
                         alert('Login Berhasil, Selamat Datang ". $pengguna[$count]["username"] ."');
-                        document.location.href = 'home.php';
+                        document.location.href = 'login.php';
                     </script>
                 ";
 
