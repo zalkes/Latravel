@@ -94,35 +94,35 @@
                 <img src="../assets/images/admin.png" alt="Admin Icon" class="profile-icon">
             </div>
         </header>
-        <div class="content-container">
-            <div class="form-section">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="judul">Judul</label>
-                        <input type="text" id="judul" name="judul" placeholder="Masukkan judul..." value="<?php echo $panduan['judul']?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="deskripsi">Deskripsi</label>
-                        <textarea id="deskripsi" name="deskripsi" placeholder="Masukkan deskripsi..."><?php echo $panduan['deskripsi']?></textarea>
-                    </div>
-                    <div class="buttons">
-                        <button type="submit" name="submit" class="kirim-btn">Kirim</button>
-                        <button type="button" class="kembali-btn" onclick="window.history.back()">Kembali</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="upload-section">
-                <div class="upload-placeholder">
-                    <?php $direktori = "../database/foto_panduan/" . $panduan["foto"];?>
-                    <?php echo "<img src='$direktori' alt='Foto panduan' class='gambar-update' id='title-img'>";?>
-                    <img id="up-img" alt="preview" class="gambar-preview">
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="content-container">
+                <div class="form-section">
+                        <div class="form-group">
+                            <label for="judul">Judul</label>
+                            <input type="text" id="judul" name="judul" placeholder="Masukkan judul..." value="<?php echo $panduan['judul']?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="deskripsi">Deskripsi</label>
+                            <textarea id="deskripsi" name="deskripsi" placeholder="Masukkan deskripsi..."><?php echo $panduan['deskripsi']?></textarea>
+                        </div>
+                        <div class="buttons">
+                            <button type="submit" name="submit" class="kirim-btn">Kirim</button>
+                            <button type="button" class="kembali-btn" onclick="window.history.back()">Kembali</button>
+                        </div>
                 </div>
-                <label for="upload-file" class="upload-btn">Unggah File Gambar</label>
-                <input type="file" id="upload-file" name="upload_file" accept="image/*" style="display: none;" onchange="limit_size(event)">
+
+                <div class="upload-section">
+                    <div class="upload-placeholder">
+                        <?php $direktori = "../database/foto_panduan/" . $panduan["foto"];?>
+                        <?php echo "<img src='$direktori' alt='Foto panduan' class='gambar-update' id='title-img'>";?>
+                        <img id="up-img" alt="preview" class="gambar-preview">
+                    </div>
+                    <label for="upload-file" class="upload-btn">Unggah File Gambar</label>
+                    <input type="file" id="upload-file" name="upload_file" accept="image/*" style="display: none;" onchange="limit_size(event)">
+                </div>
             </div>
-        </div>
+        </form>
     </section>
-    <script src="../elements/scripts/script.js"></script>
 </body>
+<script src="../elements/scripts/script.js"></script>
 </html>

@@ -1,3 +1,20 @@
+<?php
+    session_start();
+    if (!isset($_SESSION["admin"])) {
+        echo "
+            <script>
+                document.location.href = '../login_page/login.php';
+            </script>
+        ";
+    }
+    require "../database/koneksi.php";
+    $sql_select_rekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi");
+    $rekomendasi = [];
+    while ($row_rekomendasi = mysqli_fetch_assoc($sql_select_rekomendasi)) {
+        $rekomendasi[] = $row_rekomendasi;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,39 +51,36 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                for ($i = 1; $i <= 3; $i++) {
-                    $status = $i % 2 == 0 ? "Belum Disetujui" : "Disetujui";
-                    $statusClass = $i % 2 == 0 ? "rejected" : "approved";
-
-                    echo "<tr>
-                            <td>$i</td>
-                            <td><img src='../assets/images/masjid.png' alt='Image' class='gambar'></td>
-                            <td>Islamic Center</td>
-                            <td>Islamic center adalah masjid terbesar yang ada di Samarinda.</td>
-                            <td>Username</td>
-                            <td class='status $statusClass'>$status</td>
-                            <td>";
-                    if ($status == "Disetujui") {
-                        echo "<div class='action-btn'>
-                                <a href='ubah.php?id=$i' class='edit-btn' title='Ubah'><img src='../assets/icon/ubah.png'></a>
-                                <a href='hapus.php?id=$i' class='delete-btn' title='Hapus'><img src='../assets/icon/sampah.png'></a>
-                            </div>";
-                    } else {
-                        echo "<div class='action-btn'>
-                                <a href='terima.php?id=$i' class='approve-btn' title='Setuju'><i class='fa-solid fa-circle-check fa-xl'></i></a>
-                                <a href='tolak.php?id=$i' class='reject-btn' title='Tolak'><i class='fa-solid fa-circle-xmark fa-xl'></i></a>
-                            </div>";
-                    }
-                    echo "</td></tr>";
-                }
-                ?>
+                <?php $i = 1; foreach($rekomendasi as $rekom) : ?>
+                <?php $direktori = "../database/foto_rekomendasi/" . $rekom["foto"];?>
+                <tr>
+                    <td><?= $i ?></td>
+                    <td><?php if ($rekom["foto"] == "") {echo "Foto belum ada";} else {echo "<img src='$direktori' alt='Foto rekomendasi' class='gambar'>";} ?></td>
+                    <td><?php echo $rekom["judul"];?></td>
+                    <td><?php echo $rekom["deskripsi"];?></td>
+                    <td><?php echo $rekom["fk_username"];?></td>
+                    <td class='status <?php if ($rekom["stat"] == "Belum Disetujui") {echo "rejected";} else {echo "approved";} ?>'><?php echo $rekom["stat"];?></td>
+                    <td>
+                        <?php if ($rekom["stat"] == "Disetujui") { ?>
+                            <div class='action-btn'>
+                                <a href='ubahRekomendasi.php?id_rekomendasi=<?= $rekom['id'] ?>' class='edit-btn' title='Ubah'><img src='../assets/icon/ubah.png'></a>
+                                <a href='../database/delete.php?id_rekomendasi=<?= $rekom['id'] ?>' class='delete-btn' title='Hapus' onclick="return confirm('Yakin ingin menghapus rekomendasi ini?');"><img src='../assets/icon/sampah.png'></a>
+                            </div>
+                        <?php } else { ?>
+                            <div class='action-btn'>
+                                <a href='../database/terima.php?id_rekomendasi=<?= $rekom['id'] ?>' class='approve-btn' title='Setuju'><i class='fa-solid fa-circle-check fa-xl'></i></a>
+                                <a href='../database/delete.php?id_rekomendasi=<?= $rekom['id'] ?>' class='reject-btn' title='Tolak' onclick="return confirm('Yakin ingin menolak rekomendasi ini?');"><i class='fa-solid fa-circle-xmark fa-xl'></i></a>
+                            </div>
+                        <?php } ?>
+                    </td>
+                </tr>
+                <?php $i++; endforeach; ?>
             </tbody>
         </table>
         <div class="pagination">
             <div class="pagination" id="pagination"></div>
         </div>
     </section>
-    <script src="../elements/scripts/script.js"></script>
 </body>
+<script src="../elements/scripts/script.js"></script>
 </html>

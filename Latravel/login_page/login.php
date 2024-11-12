@@ -27,7 +27,7 @@
                 echo "
                     <script>
                         alert('Login Berhasil, Selamat Datang ". $pengguna[$count]["username"] ."');
-                        document.location.href = 'home.php';
+                        document.location.href = 'login.php';
                     </script>
                 ";
 

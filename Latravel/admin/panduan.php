@@ -72,6 +72,6 @@
             <div class="pagination" id="pagination"></div>
         </div>
     </section>
-    <script src="../elements/scripts/script.js"></script>
 </body>
+<script src="../elements/scripts/script.js"></script>
 </html>

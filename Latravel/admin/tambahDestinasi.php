@@ -105,6 +105,6 @@
             </div>
         </form>
     </section>
-    <script src="../elements/scripts/script.js"></script>
 </body>
+<script src="../elements/scripts/script.js"></script>
 </html>

@@ -1,3 +1,83 @@
+<?php
+    session_start();
+    if (!isset($_SESSION["admin"])) {
+        echo "
+            <script>
+                document.location.href = '../login_page/login.php';
+            </script>
+        ";
+    }
+
+    require "../database/koneksi.php";
+    $id_rekomendasi;
+    if (isset($_GET["id_rekomendasi"])) {
+        $id_rekomendasi = $_GET["id_rekomendasi"];
+
+        $sql_select_rekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE id = $id_rekomendasi");
+        $rekomendasi = mysqli_fetch_assoc($sql_select_rekomendasi);
+    }
+
+    if (isset($_POST["submit"])){
+        $judul = $_POST["judul"];
+        $deskripsi = $_POST["deskripsi"];
+        
+        $foto = $_FILES["upload_file"]["name"];
+        $temp = $_FILES["upload_file"]["tmp_name"];
+
+        if ($foto == ""){
+            $sql = "UPDATE rekomendasi SET judul = '$judul', deskripsi = '$deskripsi' WHERE id = $id_rekomendasi";
+
+            $result = mysqli_query($conn, $sql);
+
+            if ($result){
+                echo "
+                    <script>
+                        alert('Berhasil Mengubah Rekomendasi');
+                        document.location.href = 'rekomendasi.php';
+                    </script>
+                ";
+            } else {
+                echo "
+                    <script>
+                        alert('Gagal Mengubah Rekomendasi');
+                    </script>
+                ";
+            }
+        }
+
+        date_default_timezone_set("Asia/Makassar");
+        $ekstensi = explode('.', $foto);
+        $ekstensi = strtolower(end($ekstensi));
+        $namabaru = date("Y-m-d H.i.s") . "." . $ekstensi;
+        $direktori = "../database/foto_rekomendasi/" . $namabaru;
+        $support = ["jpg", "jpeg", "png"];
+
+        if (in_array($ekstensi, $support)){
+            if (move_uploaded_file($temp, $direktori)){
+                
+                $sql = "UPDATE rekomendasi SET judul = '$judul', deskripsi = '$deskripsi', foto = '$namabaru' WHERE id = $id_rekomendasi";
+
+                $result = mysqli_query($conn, $sql);
+
+                if ($result){
+                    echo "
+                        <script>
+                            alert('Berhasil Mengubah Rekomendasi');
+                            document.location.href = 'rekomendasi.php';
+                        </script>
+                    ";
+                } else {
+                    echo "
+                        <script>
+                            alert('Gagal Mengubah Rekomendasi');
+                        </script>
+                    ";
+                }
+            }
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,39 +90,41 @@
     <?php include '../elements/sidebar-admin.php'; ?>
     <section class="main-content">
         <header>
-            <h3>UBAH REKOMENDASI PENGGUNA - (username)</h3>
+            <h3>UBAH REKOMENDASI PENGGUNA - <?php echo strtoupper($rekomendasi['fk_username'])?> </h3>
             <div class="admin-profile">
                 <span>Admin</span>
                 <img src="../assets/images/admin.png" alt="Admin Icon" class="profile-icon">
             </div>
         </header>
-        <div class="content-container">
-            <div class="form-section">
-                <form action="submit_destination.php" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="judul">Judul</label>
-                        <input type="text" id="judul" name="judul" placeholder="Masukkan judul...">
-                    </div>
-                    <div class="form-group">
-                        <label for="deskripsi">Deskripsi</label>
-                        <textarea id="deskripsi" name="deskripsi" placeholder="Masukkan deskripsi..."></textarea>
-                    </div>
-                    <div class="buttons">
-                        <button type="submit" class="kirim-btn">Kirim</button>
-                        <button type="button" class="kembali-btn" onclick="window.history.back()">Kembali</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="upload-section">
-                <div class="upload-placeholder">
-                    <img src="../assets/icon/unggah.png" alt="Upload Icon" class="upload-icon">
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="content-container">
+                <div class="form-section">
+                        <div class="form-group">
+                            <label for="judul">Judul</label>
+                            <input type="text" id="judul" name="judul" placeholder="Masukkan judul..." value="<?php echo $rekomendasi['judul']?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="deskripsi">Deskripsi</label>
+                            <textarea id="deskripsi" name="deskripsi" placeholder="Masukkan deskripsi..."><?php echo $rekomendasi['deskripsi']?></textarea>
+                        </div>
+                        <div class="buttons">
+                            <button type="submit" name="submit" class="kirim-btn">Kirim</button>
+                            <button type="button" class="kembali-btn" onclick="window.history.back()">Kembali</button>
+                        </div>
                 </div>
-                <label for="upload-file" class="upload-btn">Unggah File Gambar</label>
-                <input type="file" id="upload-file" name="upload_file" accept="image/*" style="display: none;">
+
+                <div class="upload-section">
+                    <div class="upload-placeholder">
+                        <?php $direktori = "../database/foto_rekomendasi/" . $rekomendasi["foto"];?>
+                        <?php echo "<img src='$direktori' alt='Foto rekomendasi' class='gambar-update' id='title-img'>";?>
+                        <img id="up-img" alt="preview" class="gambar-preview">
+                    </div>
+                    <label for="upload-file" class="upload-btn">Unggah File Gambar</label>
+                    <input type="file" id="upload-file" name="upload_file" accept="image/*" style="display: none;" onchange="limit_size(event)">
+                </div>
             </div>
-        </div>
+        </form>
     </section>
-    <script src="../elements/scripts/script.js"></script>
 </body>
+<script src="../elements/scripts/script.js"></script>
 </html>

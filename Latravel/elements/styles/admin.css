@@ -364,6 +364,7 @@ table img {
     height: 235px;
     border-radius: 20px;
     max-width: 350px;
+    cursor: pointer;
 }
 
 .card-dua {
@@ -372,6 +373,7 @@ table img {
     height: 235px;
     border-radius: 20px;
     max-width: 735px;
+    cursor: pointer;
 }
 
 .detail-pengguna {
