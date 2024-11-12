@@ -283,6 +283,14 @@ table img {
 .reject-btn i {
     color: #ff3131;
 }
+td.status.rejected {
+    color: #ff3131;
+    font-weight: bold;
+}
+td.status.approved {
+    color: #7ed957;
+    font-weight: bold;
+}
 
 .delete-btn img {
     width: 30px;
