@@ -160,7 +160,7 @@
                             <label for="username"><i class="fas fa-user fa-lg"></i></label>
                         </div>
                         <div class="field">
-                            <input type="email" name="email_up" id="email_up" placeholder="Email" required>
+                            <input type="email" name="email_up" id="email_up" placeholder="Email" required autocomplete="off">
                             <label for="email"><i class="fas fa-envelope fa-lg"></i></label>
                         </div>
                         <div class="field">
