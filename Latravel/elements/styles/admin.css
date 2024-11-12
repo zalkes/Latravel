@@ -241,7 +241,7 @@ table th, table td {
 }
 
 table th {
-    background-color: #00BFFF;
+    background-color: #2bace4;
     color: black;   
 }
 
@@ -310,17 +310,26 @@ table img {
     margin-top: 30px;
 }
 
-.pagination span {
+.pagination .pagination button.active {
     margin: 0 5px;
     padding: 5px 10px;
     cursor: pointer;
+    font-weight: bold;
+    background-color: white;
+    color: #2bace4;
+    border-radius: 5px;
+    border: 1px solid #2bace4;
 }
 
-.pagination .page-number.active {
+.pagination .pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
     font-weight: bold;
-    background-color: #00BFFF;
+    background-color: #2bace4;
     color: white;
     border-radius: 5px;
+    border: 0;
 }
 
 /* ---------------------------- DASHBOARD ---------------------------- */
@@ -455,7 +464,7 @@ table img {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 6px;
 }
 
 .form-section::after {
@@ -476,7 +485,6 @@ table img {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    margin-bottom: 15px;
 }
 
 .form-group:nth-child(1) {
@@ -563,8 +571,6 @@ form textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 40px;
-    margin-top: 40px;
 }
 
 .upload-icon {
@@ -595,19 +601,19 @@ form textarea {
 }
 
 .gambar-preview {
-    display: none;
+    display: none;  
+    max-height: 265px;
     width: 100%;
     height: 100%;
+    object-fit: contain;
 }
 
 /* ---------------------------- CRUD 2 ADMIN ---------------------------- */
 .form-group-2 {
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
     flex-direction: row;
-    align-items: top;
     gap: 10px;
-    margin-bottom: 15px;
 }
 
 .form-group-2:nth-child(1) {

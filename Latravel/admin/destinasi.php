@@ -73,14 +73,9 @@
             </tbody>
         </table>
         <div class="pagination">
-            <span>&lt;</span>
-            <span class="page-number active">1</span>
-            <span class="page-number">2</span>
-            <span class="page-number">3</span>
-            <span class="page-number">10</span>
-            <span>&gt;</span>
+            <div class="pagination" id="pagination"></div>
         </div>
     </section>
+    <script src="../elements/scripts/script.js"></script>
 </body>
-<script src="../elements/scripts/script.js"></script>
 </html>

@@ -19,7 +19,7 @@
         </li>
         <li class="<?= ($current_page == 'rekomendasi.php') ? 'active' : '' ?>">
             <a href="../admin/rekomendasi.php">
-                <img src="../assets/icon/ubah.png" alt="Icon" width="24" height="24"> Rekomendasi Pengguna
+                <img src="../assets/icon/ubah2.png" alt="Icon" width="24" height="24"> Rekomendasi Pengguna
             </a>
         </li>
         <li class="<?= ($current_page == 'destinasi.php') ? 'active' : '' ?>">

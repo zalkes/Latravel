@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Libre Franklin', sans-serif;
 }
 html,body{
     display: grid;
@@ -37,7 +37,7 @@ html,body{
 .wrapper .title{
     width: 50%;
     font-size: 35px;
-    font-weight: 600;
+    font-weight: 700;
     text-align: center;
     transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
     color: #fff;
@@ -95,24 +95,24 @@ input[type="radio"]{
     cursor: default;
     user-select: none;
     background: #00b4d8;
-    font-weight: 800;
+    font-weight: 700;
 }
 #signup:checked ~ label.login{
     color: #00b4d8;
     background: #fff;
-    font-weight: 800;
+    font-weight: 700;
 }
 #login:checked ~ label.signup{
     color: #00b4d8;
     background: #fff;
-    font-weight: 800;
+    font-weight: 700;
 }
 #login:checked ~ label.login{
     cursor: default;
     user-select: none;
     color: #fff;
     background: #00b4d8;
-    font-weight: 800;
+    font-weight: 700;
 }
 .wrapper .form-container{
     width: 100%;
@@ -127,9 +127,18 @@ input[type="radio"]{
     transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
 .form-inner form .field{
+    display: flex;
     height: 50px;
     width: 100%;
     margin-top: 20px;
+}
+.field label {
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 18px;
+    border-bottom: 2px solid #fff;
 }
 
 .form-inner form .field input{
@@ -228,7 +237,7 @@ form .btn input[type="submit"]{
     padding-left: 0;
     border-radius: 50px;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 700;
     cursor: pointer;
 }
 
@@ -249,11 +258,5 @@ form .btn input[type="submit"]{
 @media (max-width: 768px) {
     .logo {
         display: none;
-    }
-
-    .wrapper {
-        margin-top: 70%;
-        border-radius: 20px;
-        max-height: 800px;
     }
 }

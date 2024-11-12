@@ -54,7 +54,8 @@ if (isset($_POST["submit"])){
             <div class="form-inner">
                 <form action="" method="POST" class="signup">
                     <div class="field">
-                        <input type="email" name="email" id="email"  placeholder="Email" required>
+                        <input type="email" name="email" id="email"  placeholder="Email" required autocomplete="off">
+                        <label for="email"><i class="fas fa-envelope fa-lg"></i></label>
                     </div>
                     <br><br>
                     <div class="field btn">

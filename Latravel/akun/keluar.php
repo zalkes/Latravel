@@ -2,6 +2,6 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: dashboard.php');
+header('Location: ../login_page/login.php');
 exit;
 ?>

@@ -59,10 +59,12 @@
             <div class="form-inner">
                 <form action="" method="POST" class="signup">
                         <div class="field">
-                            <input type="password" name="password_new" id="password_new" placeholder="Password Baru" required>
+                            <input type="password" name="password_new" id="password_new" placeholder="Password Baru" required autocomplete="off">
+                            <label for="password"><i class="fas fa-lock fa-lg"></i></label>
                         </div>
                         <div class="field">
                             <input type="password" name="conf_password_new" id="conf_password_new" placeholder="Konfirmasi Password" required>
+                            <label for="password"><i class="fas fa-lock fa-lg"></i></label>
                         </div>
                     <br><br>
                     <div class="field btn">

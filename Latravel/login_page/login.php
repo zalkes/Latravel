@@ -132,10 +132,12 @@
                 <div class="form-inner">
                     <form action="" method="POST" class="login" >
                         <div class="field">
-                            <input type="text" id="username" name="username" placeholder="Username" required>
+                            <input type="text" id="username" name="username" placeholder="Username" required autocomplete="off">
+                            <label for="username"><i class="fas fa-user fa-lg"></i></label>
                         </div>
                         <div class="field">
                             <input type="password" id="password" name="password" placeholder="Password" required>
+                            <label for="password"><i class="fas fa-lock fa-lg"></i></label>
                         </div>
                         <div class="pass-link">
                             <a href="forgotpw.php">Lupa Password?</a>
@@ -145,7 +147,7 @@
                             <input type="submit" name="login" value="MASUK">
                         </div>
                         <div class="google">
-                            <a href="">Atau masuk dengan </a>
+                            <a>Atau masuk dengan</a>
                         </div>
                         <div class="field btn">
                             <div class="btn-google"></div>
@@ -154,16 +156,20 @@
                     </form>
                     <form action="" method="POST" class="signup">
                         <div class="field">
-                            <input type="text" name="username_up" id="username_up" placeholder="Username" required>
+                            <input type="text" name="username_up" id="username_up" placeholder="Username" required autocomplete="off">
+                            <label for="username"><i class="fas fa-user fa-lg"></i></label>
                         </div>
                         <div class="field">
                             <input type="email" name="email_up" id="email_up" placeholder="Email" required>
+                            <label for="email"><i class="fas fa-envelope fa-lg"></i></label>
                         </div>
                         <div class="field">
                             <input type="password" name="password_up" id="password_up" placeholder="Password" required>
+                            <label for="password"><i class="fas fa-lock fa-lg"></i></label>
                         </div>
                         <div class="field">
                             <input type="password" name="conf_password_up" id="conf_password_up" placeholder="Konfirmasi Password" required>
+                            <label for="password"><i class="fas fa-lock fa-lg"></i></label>
                         </div>
                         <div class="field btn">
                             <div class="btn-layer"></div>
