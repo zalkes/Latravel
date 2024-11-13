@@ -61,4 +61,24 @@
             ";
         }
     }
+
+    if (isset($_GET["id_rekomendasi"])){
+        $id_rekomendasi = $_GET["id_rekomendasi"];
+        $select = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE id = $id_rekomendasi");
+        $rekomendasi = mysqli_fetch_assoc($select);
+        $filePath = "../database/foto_rekomendasi/" . $rekomendasi["foto"];
+        if (file_exists($filePath) && !is_dir($filePath)) {
+            unlink($filePath);
+        }
+        $result = mysqli_query($conn, "DELETE FROM rekomendasi WHERE id = $id_rekomendasi");
+    
+        if ($result) {
+            echo "
+            <script>
+            alert('Berhasil Menghapus Data Rekomendasi!');
+            document.location.href = '../admin/rekomendasi.php';
+            </script>
+            ";
+        }
+    }
 ?>
