@@ -10,9 +10,9 @@ html,body{
     height: 100%;
     width: 100%;
     place-items: center;
-    background: url(../../assets/images/back.png);
+    background: url(../../assets/images/pantai.png);
+    background-position: right;
     background-size: cover;
-    background-position: center;
 }
 ::selection{
     background: #00b4d8;
@@ -200,11 +200,15 @@ form .btn .btn-google{
     position: absolute;
     background: #ffffff;
     border-radius: 50px;
-    transition: all 0.4s ease;;
+    transition: all 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #google-login{
     color: #000;
+    font-weight: 500;
 }
 
 form .btn{

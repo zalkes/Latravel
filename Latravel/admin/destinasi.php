@@ -37,12 +37,14 @@
                 <img src="../assets/images/admin.png" alt="Admin Icon" class="profile-icon">
             </div>
         </header>
-        <div class="search-container">
-            <input type="text" placeholder="Pencarian..." id="search">
-            <button id="searchButton"><img src="../assets/icon/cari.png" alt="Icon" width="16" height="16"></i></button>
+        <div class="table-header">
+            <button class="add-button" onclick="window.location.href='tambahDestinasi.php';">Tambah Destinasi</button>
+            <div class="search-container">
+                <input type="text" placeholder="Pencarian..." id="search">
+                <button id="searchButton"><img src="../assets/icon/cari.png" alt="Icon" width="16" height="16"></i></button>
+            </div>
         </div>
-        <button class="add-button" onclick="window.location.href='tambahDestinasi.php';">Tambah Destinasi</button>
-        <div id="container">
+        <div class="table-section">
             <table>
                 <thead>
                     <tr>
@@ -66,7 +68,7 @@
                         <td>
                             <div class='action-btn'>
                                 <a href='ubahDestinasi.php?id_destinasi=<?= $dest['id'] ?>' class='edit-btn'><img src='../assets/icon/ubah.png'></a>
-                                <a href='../database/delete.php?id_destinasi=<?= $dest['id'] ?>' class='delete-btn' onclick="return confirm('Yakin ingin menghapus destinasi ini?');"><img src='../assets/icon/sampah.png'></a>
+                                <a href='../database/delete.php?id_destinasi=<?= $dest['id'] ?>' class='delete-btn' onclick="return confirm('Yakin ingin menghapus destinasi ini?');"><img src='../assets/icon/sampah.svg'></a>
                             </div>
                         </td>
                     </tr>
@@ -74,11 +76,10 @@
                 </tbody>
             </table>
         </div>
-        <div class="pagination">
+        <div class="pagination-section">
             <div class="pagination" id="pagination"></div>
         </div>
     </section>
 </body>
 <script src="../elements/scripts/script.js"></script>
-<script src="../livesearch/livesearch.js"></script>
 </html>

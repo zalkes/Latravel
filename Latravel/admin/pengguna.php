@@ -35,13 +35,13 @@
                 <img src="../assets/images/admin.png" alt="Admin Icon" class="profile-icon">
             </div>
         </header>
-        <div class="search-container">
-            <form action="" method="get">
+        <div class="table-header1">
+            <div class="search-container">
                 <input type="text" placeholder="Pencarian..." id="search">
                 <button id="searchButton"><img src="../assets/icon/cari.png" alt="Icon" width="16" height="16"></i></button>
-            </form>
+            </div>
         </div>
-        <div id="container">
+        <div class="table-section">
             <table>
                 <thead>
                     <tr>
@@ -60,17 +60,16 @@
                         <td><?php if ($user["foto"] == "") {echo "Foto belum ada";} else {echo "<img src='$direktori' alt='Foto pengguna' width='80px' heigth='80px'>";} ?></td>
                         <td><?php echo $user["username"];?></td>
                         <td><?php echo $user["email"];?></td>
-                        <td><a href="../database/delete.php?username=<?= $user['username'] ?>" onclick="return confirm('Yakin ingin menghapus akun pengguna ini?');" class='delete-btn'><img src='../assets/icon/sampah.png'></a></td>
+                        <td><a href="../database/delete.php?username=<?= $user['username'] ?>" onclick="return confirm('Yakin ingin menghapus akun pengguna ini?');" class='delete-btn'><img src='../assets/icon/sampah.svg'></a></td>
                     </tr>
                     <?php $i++; endforeach; ?>
                 </tbody>
             </table>
         </div>
-        <div class="pagination">
+        <div class="pagination-section">
             <div class="pagination" id="pagination"></div>
         </div>
     </section>
 </body>
 <script src="../elements/scripts/script.js"></script>
-<script src="../livesearch/livesearch.js"></script>
 </html>

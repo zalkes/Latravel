@@ -34,11 +34,13 @@
                 <img src="../assets/images/admin.png" alt="Admin Icon" class="profile-icon">
             </div>
         </header>
-        <div class="search-container">
-            <input type="text" placeholder="Pencarian..." id="search">
-            <button id="searchButton"><img src="../assets/icon/cari.png" alt="Icon" width="16" height="16"></i></button>
+        <div class="table-header1">
+            <div class="search-container">
+                <input type="text" placeholder="Pencarian..." id="search">
+                <button id="searchButton"><img src="../assets/icon/cari.png" alt="Icon" width="16" height="16"></i></button>
+            </div>
         </div>
-        <div id="container">
+        <div class="table-section">
             <table>
                 <thead>
                     <tr>
@@ -65,7 +67,7 @@
                             <?php if ($rekom["stat"] == "Disetujui") { ?>
                                 <div class='action-btn'>
                                     <a href='ubahRekomendasi.php?id_rekomendasi=<?= $rekom['id'] ?>' class='edit-btn' title='Ubah'><img src='../assets/icon/ubah.png'></a>
-                                    <a href='../database/delete.php?id_rekomendasi=<?= $rekom['id'] ?>' class='delete-btn' title='Hapus' onclick="return confirm('Yakin ingin menghapus rekomendasi ini?');"><img src='../assets/icon/sampah.png'></a>
+                                    <a href='../database/delete.php?id_rekomendasi=<?= $rekom['id'] ?>' class='delete-btn' title='Hapus' onclick="return confirm('Yakin ingin menghapus rekomendasi ini?');"><img src='../assets/icon/sampah.svg'></a>
                                 </div>
                             <?php } else { ?>
                                 <div class='action-btn'>
@@ -79,11 +81,10 @@
                 </tbody>
             </table>
         </div>
-        <div class="pagination">
+        <div class="pagination-section">
             <div class="pagination" id="pagination"></div>
         </div>
     </section>
 </body>
 <script src="../elements/scripts/script.js"></script>
-<script src="../livesearch/livesearch.js"></script>
 </html>

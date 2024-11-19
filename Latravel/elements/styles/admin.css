@@ -46,7 +46,7 @@ body {
 }
 
 .logo img {
-    width: 100px;
+    width: 125px;
     height: auto;
 }
 
@@ -172,16 +172,9 @@ header h3 {
 
 .search-container {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.search-container {
-    display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-right: 10px;
 }
 
 #search {
@@ -210,7 +203,7 @@ header h3 {
 .add-button {
     background-color: #7ed957;
     color: white;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -227,6 +220,26 @@ header h3 {
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
+.table-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 50px 0;
+}
+
+.table-header1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 50px 50px 0;
+}
+
+.table-section {
+    margin: 0 50px;
+}
+
 table {
     width: 100%;
     margin: 20px 0;
@@ -240,14 +253,25 @@ table th, table td {
     border: 1px solid black;
 }
 
+table th:nth-child(2), table td:nth-child(2) {
+    width: 150px;
+}
+
+table th:last-child, table td:last-child {
+    padding: 0;
+    width: 120px;
+    text-align: center;
+}
+
+table th:first-child, table td:first-child {
+    padding: 0;
+    width: 80px;
+    text-align: center;
+}
+
 table th {
     background-color: #2bace4;
     color: black;   
-}
-
-table th:nth-child(1), table td:nth-child(1), 
-table th:nth-child(2), table td:nth-child(2) {
-    width: 100px;
 }
 
 table tbody tr:nth-child(even) {
@@ -283,10 +307,12 @@ table img {
 .reject-btn i {
     color: #ff3131;
 }
+
 td.status.rejected {
     color: #ff3131;
     font-weight: bold;
 }
+
 td.status.approved {
     color: #7ed957;
     font-weight: bold;
@@ -311,24 +337,14 @@ td.status.approved {
     gap: 10px;
 }
 
-.pagination {
+.pagination-section {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 30px;
+    margin: 30px 50px 0;
 }
 
-.pagination .pagination button.active {
-    margin: 0 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-weight: bold;
-    background-color: #2bace4;
-    color: white;
-    border-radius: 5px;
-}
-
-.pagination .pagination button {
+.pagination button.active {
     margin: 0 5px;
     padding: 5px 10px;
     cursor: pointer;
@@ -336,8 +352,26 @@ td.status.approved {
     background-color: white;
     color: #2bace4;
     border-radius: 5px;
-    border: 0;
     border: 1px solid #2bace4;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #2bace4;
+    color: white;
+    border-radius: 5px;
+    border: 0;
+}
+
+.pagination button:last-child {
+    margin-right: 0;
+}
+
+.pagination button:hover {
+    background-color: #0f456d;
 }
 
 /* ---------------------------- DASHBOARD ---------------------------- */
@@ -615,7 +649,7 @@ form textarea {
     max-height: 265px;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* ---------------------------- CRUD 2 ADMIN ---------------------------- */
