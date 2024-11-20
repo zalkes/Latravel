@@ -1,0 +1,935 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+body {
+    background-color: #f2f2f2;
+  }
+
+/* ---------------------- NAVBAR ---------------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00274d; 
+    padding: 10px 15px; 
+    color: #fff;
+    height: 100px; 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+  
+.navbar-logo img {
+    width: 100px;
+    height: 100px;
+    margin-left: 2px;
+}
+  
+.navbar-logo span {
+    font-size: 18px;
+    font-weight: bold;
+}
+  
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 50px;
+}
+  
+.navbar-menu li {
+    margin: 0 15px;
+}
+  
+.navbar-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+  
+.navbar-menu a:hover {
+    color: #2bace4;
+    transition: 0.1 ease-in-out;
+}
+  
+.navbar-profile img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+/* ---------------------- SIDEBAR ---------------------- */
+
+.sidebar {
+    width: 230px;
+    height: 100%;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    position: fixed;
+    font-family: 'Libre Franklin', sans-serif;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+#search-bar form {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin: 5px auto 20px;
+    width: 90%;
+    padding: 5px;
+    background-color: #f9f9f9;
+}
+
+
+#search-bar input {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    width: 100%;
+    background-color: transparent;
+}
+
+#search-bar button {
+    border: none;
+    background-color: black;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#search-bar button img {
+    width: 14px;
+    height: 14px;
+    filter: brightness(0) invert(1);
+}
+
+.sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.sidebar-menu li {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    padding: 15px 20px;
+    font-size: 16px;
+    opacity: 60%;
+}
+
+.sidebar-menu li a img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.sidebar-menu li a:hover {
+    font-weight: bold;
+    opacity: 100%;
+}
+
+.sidebar-menu .active a {
+    font-weight: bold;
+    opacity: 100%;
+}
+
+/* Footer Styling */
+.footer {
+    text-align: center;
+    margin-bottom: 125px;
+}
+
+.footer p {
+    color: #000000;
+    opacity: 60%;
+    font-size: 12px;
+}
+
+/* ---------------------- CRUD USER ---------------------- */
+
+.main-content {
+    padding: 0 20px 20px;
+    margin-left: 230px;
+}
+
+.crud-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px 0;
+    font-size: 24px;
+}
+
+.content-container {
+    display: flex;
+    gap: 30px;
+    background-color: #ffffff;
+    padding: 45px;
+    margin-top: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: flex-start;
+    border-radius: 25px;
+}
+
+.form-section {
+    flex: 1;
+    width: 100%;
+    padding: 40px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-section::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    right: 0;
+    width: 1px;
+    margin-right: -15px;
+    margin-top: -18px;
+    margin-bottom: -18px;
+    background-color: #ccc;
+}
+
+.form-group {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.form-group:nth-child(1) {
+    margin-top: 0;
+}
+
+.form-group label {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+    width: 100px;
+}
+
+form input[type="text"],
+form textarea {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+}
+
+form textarea {
+    height: 200px; 
+    width: 100%; 
+    resize: none;
+}
+
+.form-group textarea:nth-child(3) {
+    height: 150px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-left: 110px;
+}
+
+.kirim-btn {
+    background-color: #34db5b;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 10px;
+    width: 80px;
+    height: auto;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.kembali-btn {
+    background-color: #fecb32;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 10px;
+    width: 80px;
+    height: auto;
+    border-radius: 10px;
+    border: none;   
+    cursor: pointer;
+}
+
+.upload-section {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.upload-placeholder {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background-color: #ffffff;
+    border: 2px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-icon {
+    width: 70%;
+    height: 70%;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.upload-btn {
+    background-color: #34db5b;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 25px;
+    width: 100%;
+    max-width: 180px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.gambar-update{
+    width: 100%;
+    height: 100%;
+}
+
+.gambar-preview {
+    display: none;  
+    max-height: 265px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ---------------------- REKOMENDASI PENGGUNA ---------------------- */
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    margin-left: 230px;
+}
+
+.post-card {
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 400px;
+}
+
+.post-content {
+    padding: 20px;
+    text-align: center;
+    max-width: 600px;
+}
+
+.post-content p {
+    text-align: justify;
+    font-size: 16px;
+    color: #000000;
+    line-height: 1.5;
+    padding: 10px 0;
+    border-top: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.post-content h3 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    color: #000000;
+    text-align: center;
+}
+
+.post-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.post-user img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-user span {
+    font-size: 0.7em;
+    color: #000000;
+}
+
+.post-actions {
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #000000;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+#post-comments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 100%;
+}
+
+.comments {
+    margin: 15px 0;
+    max-height: 80px;
+    overflow-y: scroll;
+    border-bottom: 1px solid #f2f2f2;
+}
+  
+.comment {
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: column;
+}
+
+.comment img{
+    width: 25px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+
+.comment-username {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin: 0
+}
+
+.comment-text {
+    font-size: 14px;
+    font-weight: 300;
+    text-align: justify;
+    margin-left: 37px;
+}
+
+.post-actions span {
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.post-actions i {
+    font-size: 24px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.post-image {
+    width: 400px;
+    overflow: hidden;
+}
+
+.post-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-actions form textarea {
+    width: 100%;
+    border: 1px solid #f2f2f2;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    height: 40px;
+    padding: 10px;
+}
+
+.post-actions form textarea:focus {
+    outline: none;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.like-btn {
+    background-color: #ffffff;
+    border: none;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.comment-btn {
+    background-color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #f2f2f2;
+    border-right: none;
+    padding: 0 5px;
+    height: 40px;
+    border-radius: 5px 0 0 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+/* ---------------------- PROFIL PENGGUNA ---------------------- */
+
+.profile-container {
+    height: fit-content;
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar-profile {
+    width: 300px;
+    height: 100%;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    position: fixed;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 0 10px;
+}
+
+.profil {
+    text-align: center;
+    border-bottom: solid 2px #ddd;
+    padding-bottom: 30px;
+}
+
+.profil h1 {
+    margin: 17px 0;
+}
+
+.profil img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: solid 1px black;
+    margin: 20px auto;
+}
+
+.profile-img img {
+    border-radius: 50%;
+    object-fit: cover;
+    border: solid 1px black;
+    margin: 20px auto;
+}
+
+#foto-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.profil h3 {
+    margin-top: 20px;
+}
+
+#bio {
+    margin: 25px 20px 0;
+    padding: 5px 10px;
+    text-align: justify;
+    border-bottom: solid 2px #ddd;
+    height: 100px;
+    font-size: 18px;
+    font-weight: none;
+    text-align: justify;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background: none;
+    color: #000000;
+    width: -webkit-fill-available;
+}
+
+.bio {
+    margin: 22px 0;
+    padding: 0 15px;
+    padding-bottom: 22px;
+    text-align: justify;
+    border-bottom: solid 2px #ddd;
+}
+
+#username {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background: none;
+    color: #000000;
+}
+
+#username:focus {
+    border-radius: 0;
+    padding: 5px;
+}
+
+#profil .profil h3 img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.profile-img {
+    display: flex;
+    justify-self: center;
+}
+
+.profile-img img #icon-kamera {
+    border-radius: none;
+}
+
+#icon-kamera {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-color: black;
+    opacity: 60%;
+    border-radius: 50%;
+    margin-top: 80px;
+    padding: 7px;
+    cursor: pointer;
+    align-content: center;
+}
+
+#icon-camera img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.aksi {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.ubah {
+    display: flex;
+    background-color: #2bace4;
+    border-radius: 18px;
+    padding: 7px 15px;
+    width: 120px;
+    justify-content: center;
+    align-self: center;
+    font-weight: bold;
+}
+
+.ubah a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.keluar {
+    display: flex;
+    background-color: #ff3131;
+    border-radius: 18px;
+    padding: 7px 15px;
+    width: 120px;
+    justify-content: center;
+    align-self: center;
+    font-weight: bold;
+}
+
+.keluar a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.keluar img {
+    height: 20px;
+    width: 20px;
+    margin-right: 7px;
+    filter: invert(1);
+}
+
+.selesai button {
+    display: flex;
+    background-color: #7ed957;
+    color: #ffffff;
+    border-radius: 18px;
+    border: none;
+    padding: 7px 15px;
+    width: 100px;
+    justify-content: center;
+    align-self: center;
+    font-weight: bold;
+}
+
+.batal button {
+    display: flex;
+    background-color: #ff3131;
+    color: #ffffff;
+    border-radius: 18px;
+    border: none;
+    padding: 7px 15px;
+    width: 100px;
+    justify-content: center;
+    align-self: center;
+    font-weight: bold;
+}
+
+.copyright {
+    text-align: center;
+    color: #000000;
+    opacity: 60%;
+    font-size: 12px;
+    position: absolute;
+    bottom: 150px;
+    width: 100%;
+}
+/* ---------------------- POSTINGAN PENGGUNA ---------------------- */
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: -1;
+    margin-left: 300px;
+    padding: 0 20px 20px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 190px;
+    font-size: 30px;
+    margin: 0 auto;
+    padding-top: 20px;
+    position: sticky;
+    z-index: 1;
+    width: 100%;
+    top: 100px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: bold;
+}
+
+.tabs a:hover {
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000000;
+    transition: 0.1s ease-in-out;
+}
+
+.tabs .active a {
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000000;
+}
+
+.tabs a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    padding-bottom: 20px;
+    gap: 10px;
+}
+
+.tabs img {
+    width: 27px;
+}
+
+.posts {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.icon-edit, .icon-delete, .icon-simpan {
+    margin: 20px 0;
+}
+
+.icon-edit:hover, .icon-delete:hover, .icon-simpan:hover {
+    margin-top: 18px;
+}
+
+.overlay img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.card {
+    position: relative; 
+}
+
+.card h4 {
+    color: #000000;
+    font-size: 27px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.cimage{
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+    height: auto; 
+    display: block; 
+}
+
+.card-add {
+    padding: 10px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 250px; 
+    height: 250px; 
+}
+
+.card-add img {
+    width: 100px;
+    height: auto; 
+    display: block;
+    margin: 0 auto;
+}
+
+.edit {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 5px;
+}
+
+/* ---------------------- FOOTER ---------------------- */
+
+.footer-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00274d;
+    color: #ffffff;
+    text-align: center;
+    position: sticky;
+}
+
+.footer-section img {
+    width: 110px;
+    height: 110px;
+}
+
+.middle-footer h3 {
+    font-size: 21px;
+}
+
+.right-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 25px;
+    font-size: 18px;
+    gap: 20px;
+}
+
+.right-footer p {
+    color: #2bace4;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.footer-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-icon a i {
+    color: #ffffff;
+    font-size: 32px;
+}
