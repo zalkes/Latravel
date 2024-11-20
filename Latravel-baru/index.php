@@ -10,7 +10,7 @@
 <body>
     <header class="header-section">
         <video class="video-background" autoplay muted loop>
-            <source src="assets/video.mp4" type="video/mp4">
+            <source src="https://shorturl.at/LN68r" type="video/mp4">
         </video>
         <navbar class="navbar-section">
             <a href="index.php" >
