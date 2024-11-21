@@ -9,9 +9,6 @@
 </head>
 <body>
     <header class="header-section">
-        <video class="video-background" autoplay muted loop>
-            <source src="https://shorturl.at/LN68r" type="video/mp4">
-        </video>
         <navbar class="navbar-section">
             <a href="index.php" >
                 <img src="assets/images/logo2.png" alt="logo latravel" width="110px" height="110px" class="img_logo">
