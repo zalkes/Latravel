@@ -503,6 +503,13 @@
     max-width: 1250px;
     max-height: 174px;
     align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.card-panduan:hover {
+    transform: scale(1.02);
+    transition: transform 0.5s;
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.3);
 }
 
 .card-panduan img {
@@ -576,7 +583,6 @@
 .about-text h4 {
     font-size: 21px;
     font-weight: normal;
-
 }
 
 /* ---------------------- FOOTER ---------------------- */

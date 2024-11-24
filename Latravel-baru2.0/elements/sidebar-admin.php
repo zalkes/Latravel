@@ -33,7 +33,7 @@
             </a>
         </li>
         <li class="<?= ($current_page == 'keluar.php') ? 'active' : '' ?>">
-            <a href="../akun/keluar.php">
+            <a href="../akun/keluar.php?logout=true">
                 <img src="../assets/icon/keluar.png" alt="Icon" width="24" height="24"> Keluar
             </a>
         </li>
