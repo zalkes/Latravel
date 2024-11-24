@@ -102,14 +102,13 @@
     </header>
     <section class="banner-container">
         <div class="text-section">
-            <h1>Kunjungi Objek</h1>
-            <h1> Wisata yang </h1>
-            <h1><span class="highlight">Menakjubkan</span></h1>
+            <h1>Cari Tempat Travel?</h1>
+            <h1><span class="highlight">Ya di Latravel</span></h1>
             <br>
             <br>
-            <p>Jelajahi keindahan luar biasa dengan mengunjungi<br>
+            <p>Ayo jelajahi keindahan luar biasa dengan mengunjungi<br>
                 objek wisata Nusantara yang tersembunyi dan <br> 
-                menakjubkan.</p>
+                menakjubkan bersama kami.</p>
         </div>
         <div class="banner-image">
             <img src="assets/images/banner.jpg" alt="about">
@@ -485,7 +484,10 @@
             <img src="assets/images/logo2.png" alt="Logo Latravel" class="logo">      
             <h4>
                 Latravel adalah sebuah website yang dibangun untuk memperkenalkan destinasi wisata Nusantara,
-                terutama wilayah Kalimantan Timur yang kurang terekspos.
+                terutama pada wilayah Kalimantan Timur yang kurang terekspos.
+                <br><br>
+                Bersama Latravel, temukan destinasi wisata menakjubkan yang mungkin belum pernah kamu ketahui. 
+                Nikmati pesona alam dan tempat-tempat unik yang siap membuat liburanmu penuh cerita seru.
             </h4>
         </div>
     </section>
