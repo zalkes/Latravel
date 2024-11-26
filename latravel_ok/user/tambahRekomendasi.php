@@ -26,7 +26,7 @@
         if (in_array($ekstensi, $support)){
             if (move_uploaded_file($temp, $direktori)){
                 
-                $sql = "INSERT INTO rekomendasi (judul, deskripsi, foto, stat, fk_username) VALUES ('$judul', '$deskripsi', '$namabaru', 'Disetujui', '$user')";
+                $sql = "INSERT INTO rekomendasi (judul, deskripsi, foto, stat, fk_username) VALUES ('$judul', '$deskripsi', '$namabaru', 'Belum Disetujui', '$user')";
 
                 $result = mysqli_query($conn, $sql);
 

@@ -66,10 +66,10 @@
                 <p><?= !empty($pengguna["bio"]) ? $pengguna["bio"] : "Belum ada bio" ?></p>
                 </div>
                 <div class="aksi">
-                    <div class="ubah">
+                    <div class="ubah" onclick="window.location.href='ubahProfil.php';">
                         <a href="ubahProfil.php">Ubah Profil</a>
                     </div>
-                    <div class="keluar">
+                    <div class="keluar" onclick="window.location.href='../akun/keluar.php';">
                         <img src="../assets/icon/keluar.png" alt="logout icon">
                         <a href="../akun/keluar.php">Keluar</a>
                     </div>

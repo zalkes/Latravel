@@ -338,12 +338,20 @@
   text-align: justify;
   margin-top: 10px;
   margin-bottom: 10px;
-}
+  max-height: 190px;
+} 
 
 .comments {
   margin: 15px 0;
-  max-height: 200px;
+  height: 200px;
   overflow-y: scroll;
+}
+
+#no-comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .comment {
@@ -370,7 +378,7 @@
   display: flex;
   align-items: center;
   font-size: 14px;
-  margin: 10px 0;
+  margin: 15px 0 5px;
 }
 
 .likes {

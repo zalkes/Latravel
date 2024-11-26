@@ -5,7 +5,7 @@
     ?>
     <ul class="sidebar-menu">
         <li id="search-bar">
-            <form action="search.php" method="GET">
+            <form action="Rekomendasi.php" method="POST">
                 <input type="text" name="search" placeholder="Search..." />
                 <button type="submit">
                     <img src="../assets/icon/cari.png" alt="Search Icon" />

@@ -37,6 +37,29 @@
         $rekomendasi[] = $row_rekom;
     }
     $count = count($rekomendasi);
+
+    if (isset($_POST['search'])) {
+        $search = $_POST['search'];
+        $sql = "
+            SELECT r.id, p.username, p.foto as profil, r.judul, r.deskripsi, r.foto,
+            (SELECT COUNT(*) FROM suka WHERE suka.fk_id_rekomen = r.id) as jumlah_like,
+            (SELECT COUNT(*) FROM suka WHERE suka.fk_id_rekomen = r.id AND suka.fk_username = ?) as disukai
+            FROM rekomendasi r 
+            JOIN pengguna p ON r.fk_username = p.username 
+            WHERE r.stat = 'Disetujui' 
+            AND r.judul LIKE ?
+        ";
+        $searchTerm = "%" . $search . "%";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $user, $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rekomendasi = [];
+        while ($row_rekom = $result->fetch_assoc()) {
+            $rekomendasi[] = $row_rekom;
+        }
+        $count = count($rekomendasi);
+    }       
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +74,12 @@
 <body>
     <?php include '../elements/navbar.php'; include '../elements/sidebar.php'; ?>
     <?php if ($count == 0) :?>
-    <?php echo""?>
+        <section class="main-container">
+            <header class="crud-header">
+                <h1>Rekomendasi Pengguna</h1>
+            </header>
+            <br><p>Rekomendasi dengan kata kunci "<?php echo isset($search) ? htmlspecialchars($search) : ''; ?>" tidak ditemukan.</p>
+        </section>
     <?php else: ?>
     <section class="main-container">
         <header class="crud-header">
@@ -91,26 +119,25 @@
                                     </div>
                                 <?php endforeach; ?>
                             <?php else: ?>
-                                <div class="comment">
+                                <div class="comment" id="no-comment">
                                     <span class="no-comment">Belum ada komentar</span>
                                 </div>
                             <?php endif; ?>
                         </div>
                         <div class="post-actions">
                             <div class="likes">
-                                <form action="like.php" method="POST">
-                                    <input type="hidden" name="id_post" value="<?= $rekom['id']; ?>">
-                                    <button type="submit" class="like-btn">
+                                <form  method="POST" action="like.php">
+                                    <button type="button" class="like-btn" data-id="<?= $rekom['id']; ?>">
                                         <i class="fa-<?= $rekom['disukai'] ? 'solid' : 'regular'; ?> fa-thumbs-up"></i>
                                     </button>
                                     <span class="like-count"><?= $rekom['jumlah_like']; ?></span>
                                 </form>
                             </div>
-                            <form method="POST" action="tambahkomen.php" id="post-comments">
-                                <button type="submit" class="comment-btn">
-                                    <i class="fa-regular fa-comment"></i> 
+                            <form method="POST" onsubmit="return false;" id="post-comments">
+                                <button type="button" class="comment-btn" data-id="<?= $rekom['id']; ?>">
+                                    <i class="fa-regular fa-comment"></i>
                                 </button>
-                                <textarea name="komentar" placeholder="Tulis komentar..." required></textarea>
+                                <input name="komentar" placeholder="Tambahkan komentar..." required>
                                 <input type="hidden" name="post_id" value="<?= $rekom['id']; ?>">
                             </form>
                         </div>
@@ -123,5 +150,79 @@
     </section>
     <?php endif; ?>
     <script src="../elements/scripts/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".like-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const id = this.dataset.id;
+                    const icon = this.querySelector("i");
+                    const countSpan = this.nextElementSibling;
+
+                    fetch("like.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: `id_post=${id}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert("Terjadi kesalahan: " + data.error);
+                            return;
+                        }
+
+                        icon.classList.toggle("fa-solid", data.liked);
+                        icon.classList.toggle("fa-regular", !data.liked);
+                        countSpan.textContent = data.jumlah_like;
+                    })
+                    .catch(error => console.error("Error:", error));
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".comment-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const form = this.closest("form");
+                    const postId = form.querySelector("[name='post_id']").value;
+                    const komentar = form.querySelector("[name='komentar']").value;
+                    const commentsContainer = form.closest(".post-content").querySelector(".comments");
+
+                    if (!komentar.trim()) {
+                        alert("Komentar tidak boleh kosong.");
+                        return;
+                    }
+
+                    fetch("tambahkomen.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: `post_id=${postId}&komentar=${encodeURIComponent(komentar)}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert("Terjadi kesalahan: " + data.error);
+                        } else {
+                            const noCommentElement = commentsContainer.querySelector("#no-comment");
+                            if (noCommentElement) {
+                                noCommentElement.remove();
+                            }
+                            const newComment = `
+                                <div class="comment">
+                                    <div class="comment-username">
+                                        <img src="${data.foto}" alt="Foto">
+                                        <span>${data.username}</span>
+                                    </div>
+                                    <span class="comment-text">${data.komentar}</span>
+                                </div>
+                            `;
+                            commentsContainer.innerHTML += newComment;
+                            form.querySelector("[name='komentar']").value = ""; 
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

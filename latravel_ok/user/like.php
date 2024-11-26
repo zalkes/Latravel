@@ -1,51 +1,45 @@
 <?php
-include '../database/koneksi.php';
 session_start();
+require "../database/koneksi.php";
 
-if (!isset($_SESSION['user'])) {
-    echo "
-        <script>
-            document.location.href = '../login_page/login.php';
-        </script>
-    ";
+if (!isset($_SESSION["user"])) {
+    http_response_code(403);
+    echo json_encode(["error" => "Unauthorized"]);
     exit();
 }
 
-if (!isset($_POST['id_post']) || empty($_POST['id_post'])) {
-    header("Location: Rekomendasi.php");
-    exit();
-}
+$username = $_SESSION["username"];
+$id_post = $_POST["id_post"];
 
-$id_rekomen = $_POST['id_post'];
-$username = $_SESSION['username'];
-
-
-$sql_check = "SELECT id FROM suka WHERE fk_id_rekomen = ? AND fk_username = ?";
+$sql_check = "SELECT * FROM suka WHERE fk_id_rekomen = ? AND fk_username = ?";
 $stmt_check = $conn->prepare($sql_check);
-if (!$stmt_check) {
-    die("Error preparing statement (CHECK): " . $conn->error);
-}
-$stmt_check->bind_param("is", $id_rekomen, $username);
+$stmt_check->bind_param("is", $id_post, $username);
 $stmt_check->execute();
-$result = $stmt_check->get_result();
+$result_check = $stmt_check->get_result();
 
-if ($result->num_rows > 0) {
-    $sql_delete = "DELETE FROM suka WHERE fk_id_rekomen = ? AND fk_username = ?";
-    $stmt_delete = $conn->prepare($sql_delete);
-    if (!$stmt_delete) {
-        die("Error preparing statement (DELETE): " . $conn->error);
-    }
-    $stmt_delete->bind_param("is", $id_rekomen, $username);
-    $stmt_delete->execute();
+if ($result_check->num_rows > 0) {
+    $sql_unlike = "DELETE FROM suka WHERE fk_id_rekomen = ? AND fk_username = ?";
+    $stmt_unlike = $conn->prepare($sql_unlike);
+    $stmt_unlike->bind_param("is", $id_post, $username);
+    $stmt_unlike->execute();
+    $liked = false;
 } else {
-    $sql_insert = "INSERT INTO suka (fk_id_rekomen, fk_username, fk_id_destinasi, disukai) VALUES (?, ?, 0, 1)";
-    $stmt_insert = $conn->prepare($sql_insert);
-    if (!$stmt_insert) {
-        die("Error preparing statement (INSERT): " . $conn->error);
-    }
-    $stmt_insert->bind_param("is", $id_rekomen, $username);
-    $stmt_insert->execute();
+    $sql_like = "INSERT INTO suka (fk_id_rekomen, fk_username) VALUES (?, ?)";
+    $stmt_like = $conn->prepare($sql_like);
+    $stmt_like->bind_param("is", $id_post, $username);
+    $stmt_like->execute();
+    $liked = true;
 }
 
-header("Location: Rekomendasi.php");
-exit();
+$sql_count = "SELECT COUNT(*) AS jumlah_like FROM suka WHERE fk_id_rekomen = ?";
+$stmt_count = $conn->prepare($sql_count);
+$stmt_count->bind_param("i", $id_post);
+$stmt_count->execute();
+$result_count = $stmt_count->get_result();
+$data = $result_count->fetch_assoc();
+
+echo json_encode([
+    "liked" => $liked,
+    "jumlah_like" => $data["jumlah_like"]
+]);
+?>

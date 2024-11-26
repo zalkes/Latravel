@@ -16,8 +16,8 @@ if (!isset($_POST['destinasi_id']) || empty($_POST['destinasi_id'])) {
     exit();
 }
 
-$destinasi_id = $_POST['destinasi_id'];
 $username = $_SESSION['username'];
+$destinasi_id = $_POST['destinasi_id'];
 
 $sql_check = "SELECT id FROM suka WHERE fk_id_destinasi = ? AND fk_username = ?";
 $stmt_check = $conn->prepare($sql_check);
@@ -36,6 +36,7 @@ if ($result->num_rows > 0) {
     }
     $stmt_delete->bind_param("is", $destinasi_id, $username);
     $stmt_delete->execute();
+    $liked = false;
 } else {
     $sql_insert = "INSERT INTO suka (fk_id_destinasi, fk_username, fk_id_rekomen, disukai) VALUES (?, ?, 0, 1)";
     $stmt_insert = $conn->prepare($sql_insert);
@@ -44,7 +45,21 @@ if ($result->num_rows > 0) {
     }
     $stmt_insert->bind_param("is", $destinasi_id, $username);
     $stmt_insert->execute();
+    $liked = true;
 }
 
-header("Location: ../index.php");
-exit();
+$sql_count = "SELECT COUNT(*) AS jumlah_like FROM suka WHERE fk_id_destinasi = ?";
+$stmt_count = $conn->prepare($sql_count);
+if (!$stmt_count) {
+    die("Error preparing statement (COUNT): " . $conn->error);
+}
+$stmt_count->bind_param("i", $destinasi_id);
+$stmt_count->execute();
+$result_count = $stmt_count->get_result();
+$data = $result_count->fetch_assoc();
+
+echo json_encode([
+    "liked" => $liked,
+    "jumlah_like" => $data["jumlah_like"]
+]);
+?>

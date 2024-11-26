@@ -135,7 +135,7 @@
                         <div class="selesai">
                             <button type="submit" name="profil">Selesai</button>
                         </div>
-                        <div class="batal">
+                        <div class="batal" onclick="window.location.href='profilPostingan.php';">
                             <a href="profilPostingan.php">Batal</a>
                         </div>
                     </div>

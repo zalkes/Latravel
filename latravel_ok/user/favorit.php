@@ -46,5 +46,5 @@ if ($result->num_rows > 0) {
     $stmt_insert->execute();
 }
 
-header("Location: ../index.php");
-exit();
+echo json_encode(["success" => true]);
+?>

@@ -378,7 +378,7 @@ form textarea {
 .post-content {
     padding: 20px;
     text-align: center;
-    max-width: 600px;
+    width: 600px;
 }
 
 .post-content p {
@@ -436,6 +436,8 @@ form textarea {
 }
 
 .comments {
+    margin-top: 0;
+    top: 0;
     margin-bottom: 15px;
     padding: 15px 10px 0 0;
     height: 95px;
@@ -499,7 +501,7 @@ form textarea {
     display: block;
 }
 
-.post-actions form textarea {
+.post-actions form input {
     width: 100%;
     border: 1px solid #f2f2f2;
     border-left: none;
@@ -508,7 +510,7 @@ form textarea {
     padding: 10px;
 }
 
-.post-actions form textarea:focus {
+.post-actions form input:focus {
     outline: none;
 }
 
@@ -684,9 +686,12 @@ form textarea {
     border-radius: 18px;
     padding: 7px 15px;
     width: 120px;
+    height: 30px;
     justify-content: center;
+    align-items: center;
     align-self: center;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .ubah a {
@@ -700,9 +705,12 @@ form textarea {
     border-radius: 18px;
     padding: 7px 15px;
     width: 120px;
+    height: 30px;
     justify-content: center;
+    align-items: center;
     align-self: center;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .keluar a {
@@ -728,6 +736,11 @@ form textarea {
     justify-content: center;
     align-self: center;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.batal {
+    cursor: pointer;
 }
 
 .batal a {

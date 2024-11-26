@@ -184,15 +184,14 @@
                                     </div>
                                 <?php endforeach; 
                             } else { ?>
-                                <div class="comment">Belum ada komentar</div>
+                                <div id="no-comment">Belum ada komentar</div>
                             <?php } ?>
                         </div>
                         <hr style="border: 1px solid rgba(128, 128, 128, 0.5); width: 100%; margin-top: -10px;">
                         <div class="footer-container">
                             <div class="likes">
-                                <form action="user/like2.php" method="POST">
-                                    <input type="hidden" name="destinasi_id" value="<?= $item['id']; ?>">
-                                    <button type="submit" class="like-btn">
+                                <form method="POST" action="user/like2.php">
+                                    <button type="button" class="like-btn" data-id="<?= $item['id']; ?>">
                                         <i class="fa-<?= $item['disukai'] ? 'solid' : 'regular'; ?> fa-thumbs-up"></i>
                                     </button>
                                     <span class="like-count"><?= $item['jumlah_like']; ?></span>
@@ -200,18 +199,19 @@
                             </div>
                             <div class="favorit">
                                 <form method="POST" action="user/favorit.php" id="post-comment">
-                                    <input type="hidden" name="destinasi_id" value="<?php echo $item['id']; ?>">
-                                    <button type="submit" class="fav-btn">
+                                    <button type="button" class="fav-btn" data-id="<?= $item['id']; ?>">
                                         <i class="fa-<?= $item['favoritkan'] ? 'solid' : 'regular'; ?> fa-bookmark"></i>
                                     </button>
                                 </form>
                             </div>
                         </div>
                         <div class="add-comment">
-                            <form method="POST" action="user/tambahkomen.php" id="post-comment">
-                                <button type="submit"><i class="fa-regular fa-comment"></i></button>
-                                <input type="text" name="komentar" placeholder="Tambahkan komentar..." required>
-                                <input type="hidden" name="destinasi_id" value="<?php echo $item['id']; ?>">
+                            <form method="POST" onsubmit="return false;" id="post-comment">
+                                <button type="button" class="comment-btn" data-id="<?= $item['id']; ?>">
+                                    <i class="fa-regular fa-comment"></i>
+                                </button>
+                                <input name="komentar" placeholder="Tambahkan komentar..." required autocomplete="off">
+                                <input type="hidden" name="destinasi_id" value="<?= $item['id']; ?>">
                             </form>
                         </div>
                     </div>
@@ -267,5 +267,106 @@
         </div>
     </footer>
     <script src="elements/scripts/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".like-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const id = this.dataset.id;
+                    const icon = this.querySelector("i");
+                    const countSpan = this.nextElementSibling;
+
+                    fetch("user/like2.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: `destinasi_id=${id}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert("Terjadi kesalahan: " + data.error);
+                            return;
+                        }
+
+                        icon.classList.toggle("fa-solid", data.liked);
+                        icon.classList.toggle("fa-regular", !data.liked);
+                        countSpan.textContent = data.jumlah_like;
+                    })
+                    .catch(error => console.error("Error:", error));
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".comment-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const form = this.closest("form");
+                    const destinasiId = form.querySelector("[name='destinasi_id']").value;
+                    const komentar = form.querySelector("[name='komentar']").value.trim();
+                    const commentsContainer = form.closest(".content-section").querySelector(".comments");
+
+                    if (komentar === "") {
+                        alert("Komentar tidak boleh kosong.");
+                        return;
+                    }
+
+                    fetch("user/tambahkomen.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: `destinasi_id=${encodeURIComponent(destinasiId)}&komentar=${encodeURIComponent(komentar)}`
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.error) {
+                                alert("Terjadi kesalahan: " + data.error);
+                            } else {
+                                const noCommentElement = commentsContainer.querySelector("#no-comment");
+                                if (noCommentElement) {
+                                    noCommentElement.remove();
+                                }
+
+                                const newComment = `
+                                    <div class="comment">
+                                        <div class="username">
+                                            <img src="${data.foto2}" alt="Foto">
+                                            <span>${data.username}</span>
+                                        </div>
+                                        <span class="text">${data.komentar}</span>
+                                    </div>
+                                `;
+                                commentsContainer.innerHTML += newComment;
+                                form.querySelector("[name='komentar']").value = "";
+                            }
+                        })
+                        .catch(error => console.error("Error:", error));
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".fav-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const id = this.dataset.id;
+                    const icon = this.querySelector("i");
+
+                    fetch("user/favorit.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: `destinasi_id=${id}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert("Terjadi kesalahan: " + data.error);
+                            return;
+                        }
+
+                        icon.classList.toggle("fa-solid", data.favorited);
+                        icon.classList.toggle("fa-regular", !data.favorited);
+                    })
+                    .catch(error => console.error("Error:", error));
+                });
+            });
+        });
+    </script>
 </body>
 </html>
