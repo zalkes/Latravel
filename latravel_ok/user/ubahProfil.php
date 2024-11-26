@@ -23,17 +23,14 @@
 
     $pengguna = $pengguna[0];
 
-    // $sql_postingan = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE fk_username = '$_SESSION[username]'")
-    // $postingan = [];
-    // while ($row = mysqli_fetch_assoc($sql_postingan)) {
-    //     $postingan[] = $row;
-    // }
-
-    // $sql_favorit = mysqli_query($conn, "SELECT * FROM favorit WHERE fk_username = '$_SESSION[username]'")
-    // $favorit = [];
-    // while ($row = mysqli_fetch_assoc($sql_favorit)) {
-    //     $favorit[] = $row;
-    // }
+    $sql = "SELECT p.username, p.foto as profil, r.judul, r.deskripsi, r.foto, r.id FROM rekomendasi r join pengguna p on r.fk_username = p.username where r.fk_username = '$_SESSION[username]'";
+    $sql_select_rekomendasi = mysqli_query($conn, $sql);
+    $rekomendasi = [];
+    $count = 0;
+    while ($row_rekom = mysqli_fetch_assoc($sql_select_rekomendasi)) {
+        $rekomendasi[] = $row_rekom;
+        $count++;
+    }
 
     if (isset($_POST["profil"])) {
         $bio = $_POST["bio"];
@@ -130,7 +127,6 @@
                         <div class="username-section">
                             <h3>
                                 <?= $pengguna["username"] ?>
-                                <!-- <input type="text" id="username" name="username" value=<?= $pengguna["username"] ?>> -->
                             </h3>
                         </div>
                     </div>
@@ -141,7 +137,6 @@
                         </div>
                         <div class="batal">
                             <a href="profilPostingan.php">Batal</a>
-                            <!-- <button type="reset">Batal</button> -->
                         </div>
                     </div>
                 </form>
@@ -164,52 +159,33 @@
                 </div>
             </div>
             <div class="posts">
+                <?php $i = 1; foreach ($rekomendasi as $rekom) : ?>
+                <?php $direktori = "../database/foto_rekomendasi/".$rekom["foto"]; ?>
                 <div class="cards">
                     <div class="card">
                         <div class="overlay">
-                            <a href=""><img src="../assets/icon/ubah.png" alt="Edit" class="icon-edit"></a>
-                            <a href=""><img src="../assets/icon/sampah.svg" alt="Hapus" class="icon-delete"></a>
+                            <a href="ubahRekomendasi.php?id_rekomendasi=<?= $rekom['id'] ?>"><img src="../assets/icon/ubah.png" alt="Edit" class="icon-edit"></a>
+                            <a href="../database/delete.php?id_rekomendasi=<?= $rekom['id'] ?>"><img src="../assets/icon/sampah.svg" alt="Hapus" class="icon-delete"></a>
                         </div>
-                        <img class="cimage" src="../assets/images/masjid.png" alt="Samarinda">
-                        <h4>Samarinda</h4>
+                        <?php echo "<img class='cimage' src='$direktori' alt='gambar'>" ?>
+                        <h4><?php echo $rekom['judul']?></h4>
                     </div>
                 </div>
-                <div class="cards">
-                    <div class="card">
-                        <div class="overlay">
-                            <a href=""><img src="../assets/icon/ubah.png" alt="Edit" class="icon-edit"></a>
-                            <a href=""><img src="../assets/icon/sampah.svg" alt="Hapus" class="icon-delete"></a>
-                        </div>
-                        <img class="cimage" src="../assets/images/masjid.png" alt="Samarinda">
-                        <h4>Samarinda</h4>
+                <?php $i++; endforeach?>
+                <?php if ($count > 0) :?>
+                    <div class="card-add">
+                        <a href="tambahRekomendasi.php">
+                            <img src="../assets/icon/tambah.png" alt="" class="img-add">
+                        </a>
                     </div>
-                </div>
-                <div class="cards">
-                    <div class="card">
-                        <div class="overlay">
-                            <a href=""><img src="../assets/icon/ubah.png" alt="Edit" class="icon-edit"></a>
-                            <a href=""><img src="../assets/icon/sampah.svg" alt="Hapus" class="icon-delete"></a>
-                        </div>
-                        <img class="cimage" src="../assets/images/masjid.png" alt="Samarinda">
-                        <h4>Samarinda</h4>
-                    </div>
-                </div>
-                <div class="cards">
-                    <div class="card">
-                        <div class="overlay">
-                            <a href=""><img src="../assets/icon/ubah.png" alt="Edit" class="icon-edit"></a>
-                            <a href=""><img src="../assets/icon/sampah.svg" alt="Hapus" class="icon-delete"></a>
-                        </div>
-                        <img class="cimage" src="../assets/images/masjid.png" alt="Samarinda">
-                        <h4>Samarinda</h4>
-                    </div>
-                </div>
-                <div class="card-add">
-                    <a href="tambahRekomendasi.php">
-                        <img src="../assets/icon/tambah.png" alt="" class="img-add">
-                    </a>
-                </div>
+                <?php endif; ?>
             </div>
+            <?php if ($count == 0) :?>
+                <p style="font-size: 24px; font-weight: 500; margin: 100px auto">Bagikan Rekomendasi Wisata Favoritmu!</p>
+                <a href="tambahRekomendasi.php">
+                    <img src="../assets/icon/tambah.png" alt="" id="tambah-rekom">
+                </a>
+            <?php endif; ?>
         </section>
     </main>
     <script src="../elements/scripts/script.js"></script>
