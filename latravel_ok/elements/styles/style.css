@@ -207,7 +207,8 @@
 /* ---------------------- REKOMENDASI ---------------------- */
 
 .rekomendasi-section {
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
 }
 
 .container {
@@ -521,7 +522,7 @@
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 1250px;
-    max-height: 174px;
+    height: 174px;
     align-items: center;
     transition: transform 0.3s ease;
 }
@@ -759,4 +760,244 @@
   animation: appear linear;
   animation-timeline: view();
   animation-range: entry 0;
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-profile .sub-menu-wrap {
+    top: 90%;
+    right: 0;
+    width: 100%;
+  }
+
+  .navbar-option{
+    transform: translateX(100%); 
+    opacity: 0; 
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100px; 
+    right: 0;
+    background-color: rgba(0, 39, 77, 0.8);
+    width: 100%;
+    z-index: 1;
+    padding: 15px;
+    gap: 25px;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+
+  .navbar-profile {
+    top: 245px;
+    transform: translateX(100%); 
+    opacity: 0; 
+    position: absolute;
+    right: 0;
+    background-color: rgba(0, 39, 77, 0.8);
+    width: 100%;
+    z-index: 1;
+    padding: 15px;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+
+  .navbar-profile img {
+    margin-right: 0;
+  }
+
+  .login {
+    top: 245px;
+    transform: translateX(100%); 
+    opacity: 0; 
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    background-color: #2bace4;
+    width: 100%;
+    z-index: 1;
+    padding: 15px;
+    border-radius: 0;
+    margin-right: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+
+  .navbar-option.active, .navbar-profile.active, .login.active {
+      transform: translateX(0);
+      opacity: 1; 
+  }
+
+  .login:hover {
+    background-color: rgba(0, 39, 77, 0.8);
+    padding: 15px;
+    border-radius: 0;
+    transition: 0.1s ease-in-out;
+  }
+
+  .hamburger-menu {
+    display: block;
+    font-size: 50px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .banner-container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  .banner-image {
+    display: none;
+  }
+
+  .text-section {
+    width: 100%;
+    height: 500px;
+    padding: 20px;
+  }
+
+  .text-section h1 {
+    font-size: 40px;
+  }
+
+  .text-section p {
+    font-size: 1rem;
+    margin-top: 16px;
+    line-height: 1;
+  }
+  
+  .rekomendasi-section {
+    height: fit-content;
+  }
+
+  .panduan-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;    
+  }
+
+  .card-panduan {
+    flex-direction: column;
+    max-width: 300px;
+    height: fit-content;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .card-panduan img {
+    height: 300px;
+  }
+
+  .card-content {
+    width: 300px;
+    height: fit-content;
+  }
+  
+  .card-content h3 {
+    font-size: 1rem;
+  }
+  
+  .card-content p {
+    font-size: 0.8rem;
+    overflow-y: scroll;
+  }
+
+  .img_logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .header-text h1 {
+    font-size: 45px;
+  }
+
+  .header-text a {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .about-image {
+    display: none;
+  }
+
+  .about-section {
+    display: flex;
+    flex-direction: column;
+    height: fit-content; 
+  }
+
+  .about-text {
+    padding: 23px;
+    width: 100%;
+    height: fit-content;  
+  }
+
+  .about-text img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-text h4 {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .footer-section img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .middle-footer h3 {
+    font-size: 0.8rem;
+  }
+
+  .right-footer {
+    gap: 3px;
+  }
+
+  .footer-icon {
+    gap: 7px;
+  }
+
+  .right-footer p{
+    font-size: 12px;
+  }
+
+  .footer-icon a i {
+    font-size: 20px;
+  }
+
+  .card-preview {
+    max-height: 100px;
+  }
+
+  .judul {
+    font-size: 10px;
+  }
+
+  .preview-container {
+    flex-direction: column;
+    border-radius: 0;
+    max-height: 770px;
+  }
+
+  #close {
+    position: absolute;
+    margin-left: 320px;
+    margin-top: -675px;
+  }
+
+  .comments {
+    height: 130px;
+  }
+
+  .card-preview {
+    max-height: 745px;
+  }
+
+  .content-section {
+    padding-top: 10px;
+  }
 }

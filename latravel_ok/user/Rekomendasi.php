@@ -147,6 +147,7 @@
                     </div>
                 </div>
         <?php $i++; endforeach?>
+        <p>© Copyright 2024 Latravel</p>
     </section>
     <?php endif; ?>
     <script src="../elements/scripts/script.js"></script>

@@ -71,17 +71,20 @@
 </head>
 <body>
     <header class="header-section">
-        <navbar class="navbar-section">
+        <navbar class="navbar-section" id="nav-menu">
             <a href="index.php" >
                 <img src="assets/images/logo2.png" alt="logo latravel" width="110px" height="110px" class="img_logo">
             </a>
-            <menu class="navbar-option">
-                    <ul><a href="">BERANDA</a></ul>
-                    <ul><a href="user/Rekomendasi.php">REKOMENDASI PENGGUNA</a></ul>
-                    <ul><a href="#about">TENTANG KAMI</a></ul>
+            <div class="hamburger-menu" id="hamburger-menu" onclick="myFunction()">
+                &#9776;
+            </div>
+            <menu class="navbar-option" id="nav-op">
+                <ul><a href="">BERANDA</a></ul>
+                <ul><a href="user/Rekomendasi.php">REKOMENDASI PENGGUNA</a></ul>
+                <ul><a href="#about">TENTANG KAMI</a></ul>
             </menu>
             <?php if(isset($_SESSION['user'])):?>
-                <div class="navbar-profile">
+                <div class="navbar-profile" id="nav-pro">
                     <?php $direktori = "database/profil_pengguna/".$pengguna['foto'];?>
                     <?php if ($pengguna['foto'] == ""){
                     echo "<img src='https://gravatar.com/avatar/00000000000000000000000000000000?d=mp' class='user-pic' alt='Foto Profil' onclick='toggleMenu()'>";
@@ -116,7 +119,7 @@
                     </div>
                 </div>
             <?php else: ?>
-                <div class="login">
+                <div class="login" id="login">
                     <a href="login_page/login.php">MASUK</a>
                 </div>
             <?php endif; ?>

@@ -144,3 +144,14 @@ function previewImage(event) {
         image.src = URL.createObjectURL(event.target.files[0]);
     }
 }
+
+// hamburger
+function myFunction() {
+    var x = document.getElementById("nav-op");
+    var y = document.getElementById("nav-pro");
+    var z = document.getElementById("login");
+
+    if (x) x.classList.toggle("active");
+    if (y) y.classList.toggle("active");
+    if (z) z.classList.toggle("active");
+}

@@ -26,13 +26,16 @@
   <div class="navbar-logo">
     <img src="../assets/images/logo2.png" alt="LATRAVEL Logo">
   </div>
-  <ul class="navbar-menu">
+  <div class="hamburger-menu" id="hamburger-menu" onclick="myFunction()">
+    &#9776;
+  </div>
+  <ul class="navbar-menu" id="nav-op">
     <li><a href="../index.php">BERANDA</a></li>
     <li><a href="../user/rekomendasi.php">REKOMENDASI PENGGUNA</a></li>
     <li><a href="../index.php#about">TENTANG KAMI</a></li>
   </ul>
   <?php if(isset($_SESSION['user'])):?>
-    <div class="navbar-profile">
+    <div class="navbar-profile" id="nav-pro">
       <?php $direktori = "../database/profil_pengguna/".$pengguna['foto'];?>
       <?php if ($pengguna['foto'] == ""){
       echo "<img src='https://gravatar.com/avatar/00000000000000000000000000000000?d=mp' class='user-pic' alt='Foto Profil' onclick='toggleMenu()'>";

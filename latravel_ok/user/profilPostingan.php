@@ -118,6 +118,7 @@
                     <img src="../assets/icon/tambah.png" alt="" id="tambah-rekom">
                 </a>
             <?php endif; ?>
+            <p>© Copyright 2024 Latravel</p>
         </section>
     </main>
     <script src="../elements/scripts/script.js"></script>

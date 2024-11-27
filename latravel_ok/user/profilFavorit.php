@@ -66,10 +66,10 @@
                 <p><?= !empty($pengguna["bio"]) ? $pengguna["bio"] : "Belum ada bio" ?></p>
                 </div>
                 <div class="aksi">
-                    <div class="ubah" onclick="window.location.href='ubahProfil.php';">
+                    <div class="ubah">
                         <a href="ubahProfil.php">Ubah Profil</a>
                     </div>
-                    <div class="keluar" onclick="window.location.href='../akun/keluar.php';">
+                    <div class="keluar">
                         <img src="../assets/icon/keluar.png" alt="logout icon">
                         <a href="../akun/keluar.php">Keluar</a>
                     </div>
@@ -111,6 +111,7 @@
             <?php if (empty($favorit)) : ?>
                 <p style="font-size: 24px; font-weight: 500; margin: 100px auto">Ayo Tandai Wisata Favoritmu</p>
             <?php endif; ?>
+            <p>© Copyright 2024 Latravel</p>
         </section>
     </main>
     <script src="../elements/scripts/script.js"></script>
